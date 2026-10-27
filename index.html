@@ -491,7 +491,6 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
   --warn-bg:#FFF6E5;
   --warn-line:#E9C77B;
   --shadow:rgba(15,28,56,.35);
-  --star:#E8A317;
   --on-dark-line:rgba(242,245,251,.18);
 
   --f-display:"Outfit","Avenir Next","Segoe UI",system-ui,sans-serif;
@@ -706,26 +705,32 @@ a{color:var(--cut-ink)}
 .person .prev b{display:block;font-weight:600;color:var(--ink);margin-bottom:2px}
 
 /* ---------- Investors (Hive5 invitation) ---------- */
-.h5-panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(24px,4vw,56px);display:grid;gap:clamp(32px,4vw,48px)}
-.h5-top{display:grid;gap:40px}
-@media (min-width:960px){.h5-top{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:64px;align-items:center}}
-.h5-intro{display:grid;gap:18px;justify-items:start;min-width:0}
+/* A full-width blue band: heading and text, the three figures in a row, then the button */
+.h5-band{background:#2453D6;--ink:#FFFFFF;--ink-2:rgba(255,255,255,.9);--muted:rgba(255,255,255,.78);--cut-ink:#FFFFFF}
+.h5-top{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"intro" "stats" "actions" "asof";row-gap:32px}
+@media (min-width:960px){.h5-top{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"intro intro" "stats stats" "actions asof";column-gap:32px;row-gap:44px}}
+.h5-intro{grid-area:intro;display:grid;gap:18px;justify-items:start;min-width:0}
+@media (min-width:960px){
+  .h5-intro{grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:56px}
+  .h5-logo{grid-column:1 / -1}
+  .h5-intro .lead{grid-column:2;align-self:end}
+}
 .h5-logo img{height:30px;width:auto}
 .h5-intro h2{font-size:var(--t-2xl)}
 .h5-intro .lead{font-size:var(--t-lg);line-height:1.5}
-.h5-actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;margin-top:6px}
-.h5-figures{display:grid;gap:14px;min-width:0}
-.h5-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin:0;border-top:1px solid var(--line)}
-.h5-stats div{display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:8px;padding:22px 16px 22px 0;border-bottom:1px solid var(--line);min-width:0}
-.h5-stats div:nth-child(even){padding-left:22px;border-left:1px solid var(--line)}
-.h5-stats dt{font-size:var(--t-sm);color:var(--muted)}
-.h5-stats dd{margin:0;font-family:var(--f-display);font-weight:600;font-size:clamp(1.8rem,1.3rem + 1.4vw,2.5rem);line-height:1;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
-.h5-stats .stars{display:flex;gap:2px;margin-top:8px;font-size:1rem;line-height:1}
-.h5-stats .stars i{font-style:normal;position:relative;color:var(--star)}
-.h5-stats .stars i.half{color:var(--line-strong)}
-.h5-stats .stars i.half::before{content:"★";position:absolute;left:0;top:0;width:50%;overflow:hidden;color:var(--star)}
-.h5-stats small{display:block;margin-top:6px;font-family:var(--f-body);font-weight:400;font-size:var(--t-xs);letter-spacing:0;color:var(--muted)}
-.h5-asof{font-size:var(--t-xs);color:var(--muted)}
+.h5-stats{grid-area:stats;display:grid;grid-template-columns:minmax(0,1fr);gap:36px 24px;margin:0}
+@media (min-width:760px){.h5-stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.h5-stats div{display:grid;justify-items:center;row-gap:8px;text-align:center;min-width:0}
+.h5-stats div::before{content:"";width:52px;height:52px;margin-bottom:8px;border-radius:12px;background:rgba(255,255,255,.14) var(--ico) center/24px no-repeat}
+.h5-stats dd{margin:0;font-family:var(--f-display);font-weight:600;font-size:clamp(2.3rem,1.5rem + 2vw,3.3rem);line-height:1;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
+.h5-stats dt{order:1;font-size:var(--t-sm);color:var(--muted)}
+.st-invested{--ico:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23FFFFFF%27 stroke-width=%271.8%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%22M3 17l6-6 4 4 8-8%22/%3E%3Cpath d=%22M14 7h7v7%22/%3E%3C/svg%3E")}
+.st-interest{--ico:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23FFFFFF%27 stroke-width=%271.8%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Crect x=%222.5%22 y=%226%22 width=%2219%22 height=%2212%22 rx=%222%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%222.8%22/%3E%3Cpath d=%22M6 9.5v5M18 9.5v5%22/%3E%3C/svg%3E")}
+.st-investors{--ico:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23FFFFFF%27 stroke-width=%271.8%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Ccircle cx=%229%22 cy=%228%22 r=%223.5%22/%3E%3Cpath d=%22M2.5 20v-1a5 5 0 0 1 5-5h3a5 5 0 0 1 5 5v1%22/%3E%3Cpath d=%22M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.2a5 5 0 0 1 3 4.8v1%22/%3E%3C/svg%3E")}
+.h5-actions{grid-area:actions;align-self:center;display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px}
+.h5-band .btn-primary{background:#FFFFFF;color:#1C45BC}
+.h5-band .btn-primary:hover{background:#E2E9FB}
+.h5-asof{grid-area:asof;align-self:center;font-size:var(--t-xs);color:var(--muted)}
 
 /* ---------- Borrowers ---------- */
 .borrow{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(28px,4vw,48px);display:grid;gap:28px}
@@ -1097,33 +1102,26 @@ a{color:var(--cut-ink)}
   </section>
 
   <!-- Investors: invitation to invest through Hive5 -->
-  <section class="band" id="investors" aria-labelledby="investors-title">
-    <div class="wrap">
-      <div class="h5-panel">
-        <div class="h5-top">
-          <div class="h5-intro">
-            <span class="h5-logo">
-              <img class="only-light" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTQuMDcgNTguMzgiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojZTI2ZmZmO308L3N0eWxlPjwvZGVmcz48ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIj48ZyBpZD0iTGF5ZXJfMS0yIiBkYXRhLW5hbWU9IkxheWVyIDEiPjxwYXRoIGQ9Ik03MS44OSwwVjI1LjY3YzEuMzctMi44NCw0Ljk0LTgsMTQuMjYtOCw4LjgyLDAsMTQuNjQsNS40MSwxNC42NCwxNi4zNVY1Ny4zMUg5My41VjM1LjExYzAtNi40OS0yLjM0LTExLjM1LTkuNTQtMTEuMzUtOC4xNiwwLTEyLDYuNTMtMTIsMTQuNnYxOUg2NC42N1YwWiIvPjxwYXRoIGQ9Ik0xMTEsMGg3LjI1VjguNzFIMTExWm0wLDE4LjczaDcuMjVWNTcuMzFIMTExWiIvPjxwYXRoIGQ9Ik0xMzEuOSwxOC43M2MzLjUyLDguODgsMTEuOTIsMjcuNzQsMTMuMzQsMzEuODloLjFjMS4wNi0zLjI5LDMuNjUtOS44LDEzLjExLTMxLjg5aDcuNDJMMTQ5LDU3LjMxaC03LjkyTDEyNCwxOC43M1oiLz48cGF0aCBkPSJNMTc1LjI4LDM5LjcxYy40MSw3LjQsNS40LDEyLjgzLDEzLjIyLDEyLjgzLDYsMCw5LjM2LTIuNDYsMTEuNDMtNi4yaDcuMjVjLTIuMDgsNS43NC03LjUzLDEyLTE5LjA3LDEyLTEzLjgyLDAtMjAuMTEtMTAuMS0yMC4xMS0yMC4yNCwwLTExLjY1LDcuNzYtMjAuNDcsMTkuOTMtMjAuNDcsMTQuNjUsMCwxOS44MSwxMC43MiwxOS44MSwyMC4xMywwLC42NSwwLDEuMTYsMCwxLjkxWm0yNC45LTUuMTVjLS4zMy00LjU5LTIuNzYtMTEuMjUtMTIuMy0xMS4yNS03LjkxLDAtMTEuNzgsNC45NC0xMi40NSwxMS4yNVoiLz48cGF0aCBkPSJNMjUxLjQ5LDEySDIyNi4yMWMtLjY0LDQuNTYtMS44MiwxMS41OS0yLjM2LDE0LjY1LDIuMzItMi4xMiw2LTQuMDksMTIuNTEtNC4wOSwxMC41OCwwLDE3LjcxLDYuNzQsMTcuNzEsMTcuMSwwLDExLjEtNy4zNywxOC43NS0xOS44NiwxOC43NS0xMi4zMSwwLTE4LjM2LTYuOTQtMTkuNTgtMTQuNDVoNy4xOGMxLjY3LDUuMzcsNS44NCw4LjM4LDEyLjU1LDguMzgsNy45LDAsMTIuMzUtNSwxMi4zNS0xMi4yOCwwLTUuNC0yLjg1LTExLjU1LTExLjktMTEuNTUtNy42MSwwLTEwLjczLDMuMTktMTIuNzIsNy4xM2wtNi4zNi0xYzEuNDgtNy4wNiwzLjkxLTIyLjg2LDQuNTctMjguODVoMzIuMDdaIi8+PHJlY3QgY2xhc3M9ImNscy0xIiB4PSI0LjAyIiB5PSI0Mi4xNiIgd2lkdGg9IjM2LjA2IiBoZWlnaHQ9IjguNTIiIHJ4PSIxLjE4Ii8+PHJlY3QgY2xhc3M9ImNscy0xIiB4PSI0LjAyIiB5PSIxMi45OCIgd2lkdGg9IjM2LjA2IiBoZWlnaHQ9IjguNTIiIHJ4PSIxLjE4Ii8+PHJlY3QgY2xhc3M9ImNscy0xIiB5PSIyNy41NyIgd2lkdGg9IjQ0LjEiIGhlaWdodD0iOC41MiIgcng9IjEuMTgiLz48L2c+PC9nPjwvc3ZnPg==" alt="Hive5" width="131" height="30">
-              <img class="only-dark" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTQuMDcgNTguMzgiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojZTI2ZmZmO308L3N0eWxlPjwvZGVmcz48ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIj48ZyBpZD0iTGF5ZXJfMS0yIiBkYXRhLW5hbWU9IkxheWVyIDEiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik03MS44OSwwVjI1LjY3YzEuMzctMi44NCw0Ljk0LTgsMTQuMjYtOCw4LjgyLDAsMTQuNjQsNS40MSwxNC42NCwxNi4zNVY1Ny4zMUg5My41VjM1LjExYzAtNi40OS0yLjM0LTExLjM1LTkuNTQtMTEuMzUtOC4xNiwwLTEyLDYuNTMtMTIsMTQuNnYxOUg2NC42N1YwWiIvPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0xMTEsMGg3LjI1VjguNzFIMTExWm0wLDE4LjczaDcuMjVWNTcuMzFIMTExWiIvPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0xMzEuOSwxOC43M2MzLjUyLDguODgsMTEuOTIsMjcuNzQsMTMuMzQsMzEuODloLjFjMS4wNi0zLjI5LDMuNjUtOS44LDEzLjExLTMxLjg5aDcuNDJMMTQ5LDU3LjMxaC03LjkyTDEyNCwxOC43M1oiLz48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMTc1LjI4LDM5LjcxYy40MSw3LjQsNS40LDEyLjgzLDEzLjIyLDEyLjgzLDYsMCw5LjM2LTIuNDYsMTEuNDMtNi4yaDcuMjVjLTIuMDgsNS43NC03LjUzLDEyLTE5LjA3LDEyLTEzLjgyLDAtMjAuMTEtMTAuMS0yMC4xMS0yMC4yNCwwLTExLjY1LDcuNzYtMjAuNDcsMTkuOTMtMjAuNDcsMTQuNjUsMCwxOS44MSwxMC43MiwxOS44MSwyMC4xMywwLC42NSwwLDEuMTYsMCwxLjkxWm0yNC45LTUuMTVjLS4zMy00LjU5LTIuNzYtMTEuMjUtMTIuMy0xMS4yNS03LjkxLDAtMTEuNzgsNC45NC0xMi40NSwxMS4yNVoiLz48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMjUxLjQ5LDEySDIyNi4yMWMtLjY0LDQuNTYtMS44MiwxMS41OS0yLjM2LDE0LjY1LDIuMzItMi4xMiw2LTQuMDksMTIuNTEtNC4wOSwxMC41OCwwLDE3LjcxLDYuNzQsMTcuNzEsMTcuMSwwLDExLjEtNy4zNywxOC43NS0xOS44NiwxOC43NS0xMi4zMSwwLTE4LjM2LTYuOTQtMTkuNTgtMTQuNDVoNy4xOGMxLjY3LDUuMzcsNS44NCw4LjM4LDEyLjU1LDguMzgsNy45LDAsMTIuMzUtNSwxMi4zNS0xMi4yOCwwLTUuNC0yLjg1LTExLjU1LTExLjktMTEuNTUtNy42MSwwLTEwLjczLDMuMTktMTIuNzIsNy4xM2wtNi4zNi0xYzEuNDgtNy4wNiwzLjkxLTIyLjg2LDQuNTctMjguODVoMzIuMDdaIi8+PHJlY3QgY2xhc3M9ImNscy0xIiB4PSI0LjAyIiB5PSI0Mi4xNiIgd2lkdGg9IjM2LjA2IiBoZWlnaHQ9IjguNTIiIHJ4PSIxLjE4Ii8+PHJlY3QgY2xhc3M9ImNscy0xIiB4PSI0LjAyIiB5PSIxMi45OCIgd2lkdGg9IjM2LjA2IiBoZWlnaHQ9IjguNTIiIHJ4PSIxLjE4Ii8+PHJlY3QgY2xhc3M9ImNscy0xIiB5PSIyNy41NyIgd2lkdGg9IjQ0LjEiIGhlaWdodD0iOC41MiIgcng9IjEuMTgiLz48L2c+PC9nPjwvc3ZnPg==" alt="Hive5" width="131" height="30">
-            </span>
-            <h2 id="investors-title">Invest in Cleyve's portfolio through Hive5</h2>
-            <p class="lead">Cleyve's portfolio purchases are funded through Hive5, an investment platform where investors can take part and earn interest. Investing on Hive5 starts from €10.</p>
-            <div class="h5-actions">
-              <a class="btn btn-primary" href="https://hive5.com" target="_blank" rel="noopener">Invest on Hive5 <span class="arr" aria-hidden="true">↗</span></a>
-              <a class="more" href="https://www.trustpilot.com/review/hive5.co" target="_blank" rel="noopener">Read Hive5 reviews on Trustpilot ↗</a>
-            </div>
-          </div>
-          <div class="h5-figures">
-            <dl class="h5-stats">
-              <div><dt>Invested through Hive5</dt><dd>€218M+</dd></div>
-              <div><dt>Interest paid to investors</dt><dd>€5.9M+</dd></div>
-              <div><dt>Investors on the platform</dt><dd>30,000+</dd></div>
-              <div><dt>Rating on Trustpilot</dt><dd>4.5<span class="stars" role="img" aria-label="4.5 out of 5 stars"><i>★</i><i>★</i><i>★</i><i>★</i><i class="half">★</i></span><small>500+ reviews</small></dd></div>
-            </dl>
-            <p class="h5-asof">Hive5 platform figures as of October 2026</p>
-          </div>
-        </div>
+  <section class="band h5-band theme-dark" id="investors" aria-labelledby="investors-title">
+    <div class="wrap h5-top">
+      <div class="h5-intro">
+        <span class="h5-logo">
+          <img class="only-light" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTQuMDcgNTguMzgiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojZTI2ZmZmO308L3N0eWxlPjwvZGVmcz48ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIj48ZyBpZD0iTGF5ZXJfMS0yIiBkYXRhLW5hbWU9IkxheWVyIDEiPjxwYXRoIGQ9Ik03MS44OSwwVjI1LjY3YzEuMzctMi44NCw0Ljk0LTgsMTQuMjYtOCw4LjgyLDAsMTQuNjQsNS40MSwxNC42NCwxNi4zNVY1Ny4zMUg5My41VjM1LjExYzAtNi40OS0yLjM0LTExLjM1LTkuNTQtMTEuMzUtOC4xNiwwLTEyLDYuNTMtMTIsMTQuNnYxOUg2NC42N1YwWiIvPjxwYXRoIGQ9Ik0xMTEsMGg3LjI1VjguNzFIMTExWm0wLDE4LjczaDcuMjVWNTcuMzFIMTExWiIvPjxwYXRoIGQ9Ik0xMzEuOSwxOC43M2MzLjUyLDguODgsMTEuOTIsMjcuNzQsMTMuMzQsMzEuODloLjFjMS4wNi0zLjI5LDMuNjUtOS44LDEzLjExLTMxLjg5aDcuNDJMMTQ5LDU3LjMxaC03LjkyTDEyNCwxOC43M1oiLz48cGF0aCBkPSJNMTc1LjI4LDM5LjcxYy40MSw3LjQsNS40LDEyLjgzLDEzLjIyLDEyLjgzLDYsMCw5LjM2LTIuNDYsMTEuNDMtNi4yaDcuMjVjLTIuMDgsNS43NC03LjUzLDEyLTE5LjA3LDEyLTEzLjgyLDAtMjAuMTEtMTAuMS0yMC4xMS0yMC4yNCwwLTExLjY1LDcuNzYtMjAuNDcsMTkuOTMtMjAuNDcsMTQuNjUsMCwxOS44MSwxMC43MiwxOS44MSwyMC4xMywwLC42NSwwLDEuMTYsMCwxLjkxWm0yNC45LTUuMTVjLS4zMy00LjU5LTIuNzYtMTEuMjUtMTIuMy0xMS4yNS03LjkxLDAtMTEuNzgsNC45NC0xMi40NSwxMS4yNVoiLz48cGF0aCBkPSJNMjUxLjQ5LDEySDIyNi4yMWMtLjY0LDQuNTYtMS44MiwxMS41OS0yLjM2LDE0LjY1LDIuMzItMi4xMiw2LTQuMDksMTIuNTEtNC4wOSwxMC41OCwwLDE3LjcxLDYuNzQsMTcuNzEsMTcuMSwwLDExLjEtNy4zNywxOC43NS0xOS44NiwxOC43NS0xMi4zMSwwLTE4LjM2LTYuOTQtMTkuNTgtMTQuNDVoNy4xOGMxLjY3LDUuMzcsNS44NCw4LjM4LDEyLjU1LDguMzgsNy45LDAsMTIuMzUtNSwxMi4zNS0xMi4yOCwwLTUuNC0yLjg1LTExLjU1LTExLjktMTEuNTUtNy42MSwwLTEwLjczLDMuMTktMTIuNzIsNy4xM2wtNi4zNi0xYzEuNDgtNy4wNiwzLjkxLTIyLjg2LDQuNTctMjguODVoMzIuMDdaIi8+PHJlY3QgY2xhc3M9ImNscy0xIiB4PSI0LjAyIiB5PSI0Mi4xNiIgd2lkdGg9IjM2LjA2IiBoZWlnaHQ9IjguNTIiIHJ4PSIxLjE4Ii8+PHJlY3QgY2xhc3M9ImNscy0xIiB4PSI0LjAyIiB5PSIxMi45OCIgd2lkdGg9IjM2LjA2IiBoZWlnaHQ9IjguNTIiIHJ4PSIxLjE4Ii8+PHJlY3QgY2xhc3M9ImNscy0xIiB5PSIyNy41NyIgd2lkdGg9IjQ0LjEiIGhlaWdodD0iOC41MiIgcng9IjEuMTgiLz48L2c+PC9nPjwvc3ZnPg==" alt="Hive5" width="131" height="30">
+          <img class="only-dark" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTQuMDcgNTguMzgiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojZTI2ZmZmO308L3N0eWxlPjwvZGVmcz48ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIj48ZyBpZD0iTGF5ZXJfMS0yIiBkYXRhLW5hbWU9IkxheWVyIDEiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik03MS44OSwwVjI1LjY3YzEuMzctMi44NCw0Ljk0LTgsMTQuMjYtOCw4LjgyLDAsMTQuNjQsNS40MSwxNC42NCwxNi4zNVY1Ny4zMUg5My41VjM1LjExYzAtNi40OS0yLjM0LTExLjM1LTkuNTQtMTEuMzUtOC4xNiwwLTEyLDYuNTMtMTIsMTQuNnYxOUg2NC42N1YwWiIvPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0xMTEsMGg3LjI1VjguNzFIMTExWm0wLDE4LjczaDcuMjVWNTcuMzFIMTExWiIvPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0xMzEuOSwxOC43M2MzLjUyLDguODgsMTEuOTIsMjcuNzQsMTMuMzQsMzEuODloLjFjMS4wNi0zLjI5LDMuNjUtOS44LDEzLjExLTMxLjg5aDcuNDJMMTQ5LDU3LjMxaC03LjkyTDEyNCwxOC43M1oiLz48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMTc1LjI4LDM5LjcxYy40MSw3LjQsNS40LDEyLjgzLDEzLjIyLDEyLjgzLDYsMCw5LjM2LTIuNDYsMTEuNDMtNi4yaDcuMjVjLTIuMDgsNS43NC03LjUzLDEyLTE5LjA3LDEyLTEzLjgyLDAtMjAuMTEtMTAuMS0yMC4xMS0yMC4yNCwwLTExLjY1LDcuNzYtMjAuNDcsMTkuOTMtMjAuNDcsMTQuNjUsMCwxOS44MSwxMC43MiwxOS44MSwyMC4xMywwLC42NSwwLDEuMTYsMCwxLjkxWm0yNC45LTUuMTVjLS4zMy00LjU5LTIuNzYtMTEuMjUtMTIuMy0xMS4yNS03LjkxLDAtMTEuNzgsNC45NC0xMi40NSwxMS4yNVoiLz48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMjUxLjQ5LDEySDIyNi4yMWMtLjY0LDQuNTYtMS44MiwxMS41OS0yLjM2LDE0LjY1LDIuMzItMi4xMiw2LTQuMDksMTIuNTEtNC4wOSwxMC41OCwwLDE3LjcxLDYuNzQsMTcuNzEsMTcuMSwwLDExLjEtNy4zNywxOC43NS0xOS44NiwxOC43NS0xMi4zMSwwLTE4LjM2LTYuOTQtMTkuNTgtMTQuNDVoNy4xOGMxLjY3LDUuMzcsNS44NCw4LjM4LDEyLjU1LDguMzgsNy45LDAsMTIuMzUtNSwxMi4zNS0xMi4yOCwwLTUuNC0yLjg1LTExLjU1LTExLjktMTEuNTUtNy42MSwwLTEwLjczLDMuMTktMTIuNzIsNy4xM2wtNi4zNi0xYzEuNDgtNy4wNiwzLjkxLTIyLjg2LDQuNTctMjguODVoMzIuMDdaIi8+PHJlY3QgY2xhc3M9ImNscy0xIiB4PSI0LjAyIiB5PSI0Mi4xNiIgd2lkdGg9IjM2LjA2IiBoZWlnaHQ9IjguNTIiIHJ4PSIxLjE4Ii8+PHJlY3QgY2xhc3M9ImNscy0xIiB4PSI0LjAyIiB5PSIxMi45OCIgd2lkdGg9IjM2LjA2IiBoZWlnaHQ9IjguNTIiIHJ4PSIxLjE4Ii8+PHJlY3QgY2xhc3M9ImNscy0xIiB5PSIyNy41NyIgd2lkdGg9IjQ0LjEiIGhlaWdodD0iOC41MiIgcng9IjEuMTgiLz48L2c+PC9nPjwvc3ZnPg==" alt="Hive5" width="131" height="30">
+        </span>
+        <h2 id="investors-title">Invest in Cleyve's portfolio through Hive5</h2>
+        <p class="lead">Cleyve's portfolio purchases are funded through Hive5, an investment platform where investors can take part and earn interest. Investing on Hive5 starts from €10.</p>
       </div>
+      <dl class="h5-stats">
+        <div class="st-invested"><dt>Invested through Hive5</dt><dd>€218M+</dd></div>
+        <div class="st-interest"><dt>Interest paid to investors</dt><dd>€5.9M+</dd></div>
+        <div class="st-investors"><dt>Investors on the platform</dt><dd>30,000+</dd></div>
+      </dl>
+      <div class="h5-actions">
+        <a class="btn btn-primary" href="https://hive5.com" target="_blank" rel="noopener">Invest on Hive5 <span class="arr" aria-hidden="true">↗</span></a>
+        <a class="more" href="https://www.trustpilot.com/review/hive5.co" target="_blank" rel="noopener">Read Hive5 reviews on Trustpilot ↗</a>
+      </div>
+      <p class="h5-asof">Hive5 platform figures as of October 2026</p>
     </div>
   </section>
 
