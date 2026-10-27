@@ -636,73 +636,17 @@ a{color:var(--cut-ink)}
 
 /* ---------- Data request list ---------- */
 .review-grid{display:grid;gap:32px}
-.rv-panel{display:grid;min-width:0}
-.rv-visual{grid-area:1 / 1;margin:0;display:grid;gap:10px;align-content:start;min-width:0}
-.rv-visual:not(.is-active){visibility:hidden;opacity:0}
 .rv-more{margin:0}
-@media (max-width:959px){
-  .rv-panel{order:-1}
-  .rv-visual:not([data-step="1"]){display:none}
-  .rv-visual[data-step="1"]{visibility:visible;opacity:1}
-}
-/* Wide screens: the visual stays in view and changes as each item in the list reaches the middle of the screen */
+@media (max-width:959px){.rv-panel{order:-1}}
+/* Wide screens: the sample table stays in view while the list scrolls past */
 @media (min-width:960px){
   .review-grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:72px;row-gap:8px;align-items:start}
   .dr{grid-column:1;grid-row:1}
   .rv-more{grid-column:1;grid-row:2}
   .rv-panel{grid-column:2;grid-row:1 / span 2;position:sticky;top:116px}
-  .rv-visual{transition:opacity .35s ease,visibility .35s}
-  .dr li{min-height:clamp(180px,28vh,260px);padding-block:24px}
-  .review-grid.is-scrolly .dr li{opacity:.45;transition:opacity .3s ease}
-  .review-grid.is-scrolly .dr li.is-active{opacity:1}
-  .review-grid.is-scrolly .dr li.is-active .num{background:var(--cut);color:var(--on-accent)}
 }
-@media (prefers-reduced-motion:reduce){.rv-visual,.review-grid.is-scrolly .dr li{transition:none}}
-.rv-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden}
-.rv-title{max-width:none;padding:14px 16px 12px;font-size:var(--t-sm);font-weight:600;color:var(--ink);border-bottom:1px solid var(--line-strong)}
-.rv-body{padding:20px 16px 18px;display:grid;gap:18px;font-size:var(--t-sm)}
-.rv-visual figcaption{font-size:var(--t-xs);color:var(--muted)}
-/* Performance by vintage: one bar per vintage, split by days past due, light to dark as arrears get older */
-.vint{display:grid;gap:12px}
-.vint-row{display:grid;grid-template-columns:3rem minmax(0,1fr);align-items:center;gap:12px;color:var(--muted);font-variant-numeric:tabular-nums}
-.vint-bar{display:flex;gap:2px;height:22px;border-radius:4px;overflow:hidden}
-.vint-bar i:nth-child(1),.rv-legend .b1{background:#C7D5F8}
-.vint-bar i:nth-child(2),.rv-legend .b2{background:#93AEF2}
-.vint-bar i:nth-child(3),.rv-legend .b3{background:#5F86EA}
-.vint-bar i:nth-child(4),.rv-legend .b4{background:#2D5BD9}
-.vint-bar i:nth-child(5),.rv-legend .b5{background:#1A3C9E}
-.rv-legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:var(--t-xs);color:var(--ink-2)}
-.rv-legend li{display:flex;align-items:center;gap:6px}
-.rv-legend i{width:10px;height:10px;border-radius:2px}
-/* Monthly collections: one series, bars from a zero baseline */
-.cols-bars{display:flex;align-items:flex-end;gap:6px;height:170px;padding-top:22px;border-bottom:1px solid var(--line-strong)}
-.cols-bars i{position:relative;flex:1;height:var(--v);background:var(--cut);border-radius:4px 4px 0 0}
-.cols-bars i[data-v]::before{content:attr(data-v);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin-bottom:6px;font-size:var(--t-xs);font-style:normal;color:var(--ink-2);white-space:nowrap}
-.cols-x{display:flex;gap:6px;margin-top:6px;font-size:var(--t-xs);color:var(--muted)}
-.cols-x span{flex:1;text-align:center}
-/* Underwriting policy: scorecard weights and policy changes */
-.weights{display:grid;gap:12px}
-.weights li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;color:var(--ink-2)}
-.weights b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
-.weights i{grid-column:1 / -1;height:8px;border-radius:4px;background:linear-gradient(var(--cut),var(--cut)) 0 0 / var(--v) 100% no-repeat,var(--bg-alt)}
-.changes{display:grid;gap:8px;padding-top:14px;border-top:1px solid var(--line);color:var(--ink-2)}
-.changes li{display:flex;gap:10px;align-items:baseline}
-.changes time{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
-/* Servicing set-up: where the loans sit and how borrowers are reached */
-.flow{display:grid;gap:22px}
-.flow li{position:relative;display:grid;gap:4px;padding:12px 14px;border-radius:10px;background:var(--bg-alt);color:var(--ink-2)}
-.flow b{color:var(--ink);font-weight:600}
-.flow li:not(:last-child)::after{content:"";position:absolute;left:50%;bottom:-16px;width:8px;height:8px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:translateX(-50%) rotate(45deg)}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
-.chips em{font-style:normal;font-size:var(--t-xs);padding:3px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink-2)}
-/* Legal documentation: a short checklist */
-.docs{display:grid;gap:12px}
-.docs li{display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:12px}
-.docs li::before{content:"";width:36px;height:36px;border-radius:10px;background:var(--cut-soft) url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%232453D6%27 stroke-width=%271.8%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%22M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z%22/%3E%3Cpath d=%22M14 3v5h5M9 13h6M9 17h4%22/%3E%3C/svg%3E") center/18px no-repeat}
-.docs b{display:block;color:var(--ink);font-weight:600}
-.docs small{font-size:var(--t-xs);color:var(--muted)}
-.docs em{display:inline-flex;align-items:center;gap:6px;font-style:normal;font-size:var(--t-xs);color:var(--ink-2)}
-.docs em::before{content:"";width:14px;height:14px;background:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%232453D6%27 stroke-width=%271.8%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%22M5 12.5l4.2 4.2L19 7%22/%3E%3C/svg%3E") center/contain no-repeat}
+/* Title bar of a data card (the process card) */
+.card-title{max-width:none;padding:14px 16px 12px;font-size:var(--t-sm);font-weight:600;color:var(--ink);border-bottom:1px solid var(--line-strong)}
 .tape-fig{margin:0;display:grid;gap:10px;min-width:0}
 .tape-scroll{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md)}
 .tape{width:100%;border-collapse:collapse;font-size:.85rem;line-height:1.25;color:var(--ink);font-variant-numeric:tabular-nums}
@@ -715,7 +659,6 @@ a{color:var(--cut-ink)}
 .tape-fig figcaption{font-size:var(--t-xs);color:var(--muted)}
 @media (max-width:420px){.tape th,.tape td{padding-inline:8px}.tape caption{padding-inline:8px}.tape th:nth-child(4),.tape td:nth-child(4){display:none}}
 .dr li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;padding-block:14px}
-.dr .num{transition:background-color .3s ease,color .3s ease}
 .dr b{display:block;color:var(--ink);font-weight:600;margin-bottom:2px}
 .dr span{font-size:var(--t-sm)}
 
@@ -749,8 +692,9 @@ a{color:var(--cut-ink)}
 @media (min-width:640px){.team{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,32px)}}
 .person{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;display:grid;grid-template-rows:auto 1fr;min-width:0}
 .person-photo{margin:0;aspect-ratio:4/5;overflow:hidden;background:var(--bg-alt);border-bottom:1px solid var(--line)}
-.person-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 18%;filter:grayscale(1) contrast(1.03);transition:filter .35s ease}
-.person:hover .person-photo img,.person:focus-within .person-photo img{filter:none}
+.person-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 18%;transition:filter .35s ease}
+/* Photos are in colour; pointing at one card turns the other photos grey */
+.team:has(.person:hover) .person:not(:hover) .person-photo img,.team:has(.person:focus-within) .person:not(:focus-within) .person-photo img{filter:grayscale(1)}
 @media (prefers-reduced-motion:reduce){.person-photo img{transition:none}}
 .person-body{padding:clamp(18px,2vw,26px);display:grid;grid-template-rows:auto auto 1fr auto;gap:6px}
 .person-name{display:flex;align-items:center;gap:10px;min-height:28px}
@@ -1054,16 +998,16 @@ a{color:var(--cut-ink)}
       </div>
       <div class="review-grid">
         <ol class="dr" aria-label="Data request list">
-          <li data-step="1"><span class="num" aria-hidden="true">1</span><div><b>Loan-level data tape</b><span>Balance, interest rate, term, origination date and current status for every loan.</span></div></li>
-          <li data-step="2"><span class="num" aria-hidden="true">2</span><div><b>Performance by vintage</b><span>Arrears buckets (1–30, 31–60, 61–90 and 90+ days past due), defaults and recoveries.</span></div></li>
-          <li data-step="3"><span class="num" aria-hidden="true">3</span><div><b>Cash collection history</b><span>Monthly collections since origination, split by vintage.</span></div></li>
-          <li data-step="4"><span class="num" aria-hidden="true">4</span><div><b>Underwriting policy</b><span>Scorecards, affordability checks and how they have changed over time.</span></div></li>
-          <li data-step="5"><span class="num" aria-hidden="true">5</span><div><b>Servicing set-up</b><span>Who services the loans today, on which systems, and how borrowers are contacted.</span></div></li>
-          <li data-step="6"><span class="num" aria-hidden="true">6</span><div><b>Legal documentation</b><span>Licences, loan agreement templates and assignment terms.</span></div></li>
+          <li><span class="num" aria-hidden="true">1</span><div><b>Loan-level data tape</b><span>Balance, interest rate, term, origination date and current status for every loan.</span></div></li>
+          <li><span class="num" aria-hidden="true">2</span><div><b>Performance by vintage</b><span>Arrears buckets (1–30, 31–60, 61–90 and 90+ days past due), defaults and recoveries.</span></div></li>
+          <li><span class="num" aria-hidden="true">3</span><div><b>Cash collection history</b><span>Monthly collections since origination, split by vintage.</span></div></li>
+          <li><span class="num" aria-hidden="true">4</span><div><b>Underwriting policy</b><span>Scorecards, affordability checks and how they have changed over time.</span></div></li>
+          <li><span class="num" aria-hidden="true">5</span><div><b>Servicing set-up</b><span>Who services the loans today, on which systems, and how borrowers are contacted.</span></div></li>
+          <li><span class="num" aria-hidden="true">6</span><div><b>Legal documentation</b><span>Licences, loan agreement templates and assignment terms.</span></div></li>
         </ol>
         <p class="rv-more"><a class="more" href="#contact" data-enquiry="sell">Request the full data list →</a></p>
         <div class="rv-panel">
-          <figure class="rv-visual tape-fig is-active" data-step="1">
+          <figure class="tape-fig">
             <div class="tape-scroll">
               <table class="tape">
                 <caption>Example loan-level tape</caption>
@@ -1078,77 +1022,6 @@ a{color:var(--cut-ink)}
               </table>
             </div>
             <figcaption>Example data, not a real portfolio. DPD = days past due.</figcaption>
-          </figure>
-          <figure class="rv-visual" data-step="2">
-            <div class="rv-box" role="img" aria-label="Example chart: share of loans in each arrears bucket for the 2022 to 2025 vintages. Newer vintages have a larger share of current loans.">
-              <p class="rv-title">Performance by vintage</p>
-              <div class="rv-body">
-                <div class="vint">
-                  <div class="vint-row"><span>2022</span><div class="vint-bar"><i style="flex:71" title="Current: 71%"></i><i style="flex:9" title="1–30 days past due: 9%"></i><i style="flex:5" title="31–60 days past due: 5%"></i><i style="flex:4" title="61–90 days past due: 4%"></i><i style="flex:11" title="90+ days past due: 11%"></i></div></div>
-                  <div class="vint-row"><span>2023</span><div class="vint-bar"><i style="flex:78" title="Current: 78%"></i><i style="flex:8" title="1–30 days past due: 8%"></i><i style="flex:4" title="31–60 days past due: 4%"></i><i style="flex:3" title="61–90 days past due: 3%"></i><i style="flex:7" title="90+ days past due: 7%"></i></div></div>
-                  <div class="vint-row"><span>2024</span><div class="vint-bar"><i style="flex:85" title="Current: 85%"></i><i style="flex:7" title="1–30 days past due: 7%"></i><i style="flex:3" title="31–60 days past due: 3%"></i><i style="flex:2" title="61–90 days past due: 2%"></i><i style="flex:3" title="90+ days past due: 3%"></i></div></div>
-                  <div class="vint-row"><span>2025</span><div class="vint-bar"><i style="flex:91" title="Current: 91%"></i><i style="flex:5" title="1–30 days past due: 5%"></i><i style="flex:2" title="31–60 days past due: 2%"></i><i style="flex:1" title="61–90 days past due: 1%"></i><i style="flex:1" title="90+ days past due: 1%"></i></div></div>
-                </div>
-                <ul class="rv-legend"><li><i class="b1"></i>Current</li><li><i class="b2"></i>1–30</li><li><i class="b3"></i>31–60</li><li><i class="b4"></i>61–90</li><li><i class="b5"></i>90+ days past due</li></ul>
-              </div>
-            </div>
-            <figcaption>Example data. Share of loans by days past due, per vintage.</figcaption>
-          </figure>
-          <figure class="rv-visual" data-step="3">
-            <div class="rv-box" role="img" aria-label="Example chart: monthly cash collections over twelve months, from €412k in January to €318k in December.">
-              <p class="rv-title">Monthly collections</p>
-              <div class="rv-body">
-                <div>
-                  <div class="cols-bars"><i style="--v:100.0%" title="Jan: €412k" data-v="€412k"></i><i style="--v:96.6%" title="Feb: €398k"></i><i style="--v:98.3%" title="Mar: €405k"></i><i style="--v:93.7%" title="Apr: €386k"></i><i style="--v:92.0%" title="May: €379k"></i><i style="--v:90.0%" title="Jun: €371k"></i><i style="--v:87.9%" title="Jul: €362k"></i><i style="--v:86.9%" title="Aug: €358k"></i><i style="--v:83.5%" title="Sep: €344k"></i><i style="--v:81.8%" title="Oct: €337k"></i><i style="--v:79.9%" title="Nov: €329k"></i><i style="--v:77.2%" title="Dec: €318k" data-v="€318k"></i></div>
-                  <div class="cols-x"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span></div>
-                </div>
-              </div>
-            </div>
-            <figcaption>Example data. Collections from one portfolio over the last twelve months.</figcaption>
-          </figure>
-          <figure class="rv-visual" data-step="4">
-            <div class="rv-box" role="img" aria-label="Example scorecard weights: credit bureau data 35%, affordability 30%, income and employment 20%, existing obligations 15%. Policy changes in 2023 and 2025.">
-              <p class="rv-title">Scorecard and policy changes</p>
-              <div class="rv-body">
-                <ul class="weights">
-                  <li><span>Credit bureau data</span><b>35%</b><i style="--v:35%"></i></li>
-                  <li><span>Affordability check</span><b>30%</b><i style="--v:30%"></i></li>
-                  <li><span>Income and employment</span><b>20%</b><i style="--v:20%"></i></li>
-                  <li><span>Existing obligations</span><b>15%</b><i style="--v:15%"></i></li>
-                </ul>
-                <ul class="changes">
-                  <li><time>2023</time>Affordability check added</li>
-                  <li><time>2025</time>Minimum score raised</li>
-                </ul>
-              </div>
-            </div>
-            <figcaption>Example data. We compare loans issued before and after each change.</figcaption>
-          </figure>
-          <figure class="rv-visual" data-step="5">
-            <div class="rv-box" role="img" aria-label="Example servicing set-up: loan data sits in a loan management system, a servicing team works from it and contacts borrowers by email, SMS, phone and an online portal.">
-              <p class="rv-title">Servicing set-up</p>
-              <div class="rv-body">
-                <ol class="flow">
-                  <li><b>Loan management system</b><span>Balances, schedules and payments</span></li>
-                  <li><b>Servicing team</b><span>Administration and collections</span></li>
-                  <li><b>Borrowers</b><span class="chips"><em>Email</em><em>SMS</em><em>Phone</em><em>Online portal</em></span></li>
-                </ol>
-              </div>
-            </div>
-            <figcaption>Example set-up. We map how servicing works today before a transfer.</figcaption>
-          </figure>
-          <figure class="rv-visual" data-step="6">
-            <div class="rv-box" role="img" aria-label="Example document checklist: lending licence, loan agreement templates and assignment terms, each marked as reviewed.">
-              <p class="rv-title">Legal documentation</p>
-              <div class="rv-body">
-                <ul class="docs">
-                  <li><span><b>Lending licence</b><small>Issued by the national regulator</small></span><em>Reviewed</em></li>
-                  <li><span><b>Loan agreement templates</b><small>Every version used in the portfolio</small></span><em>Reviewed</em></li>
-                  <li><span><b>Assignment terms</b><small>The transfer clause in each agreement</small></span><em>Reviewed</em></li>
-                </ul>
-              </div>
-            </div>
-            <figcaption>Example checklist. Documents are reviewed before an offer is final.</figcaption>
           </figure>
         </div>
       </div>
@@ -1172,7 +1045,7 @@ a{color:var(--cut-ink)}
           <a class="btn btn-primary" href="#contact" data-enquiry="sell">Discuss a portfolio <span class="arr" aria-hidden="true">→</span></a>
         </div>
         <div class="pipe-card">
-          <p class="rv-title">Portfolio sale</p>
+          <p class="card-title">Portfolio sale</p>
           <ol class="pipe">
             <li><b>Introduction</b><span>Tell us about the portfolio and what you want to achieve. We sign an NDA before any data changes hands.</span></li>
             <li><b>Data review</b><span>We work through the data pack, test it against our model and come back with questions.</span></li>
@@ -1524,22 +1397,6 @@ a{color:var(--cut-ink)}
   });
   window.addEventListener('hashchange', revealPrivacy);
   revealPrivacy();
-
-  var review = document.querySelector('.review-grid');
-  if (review && 'IntersectionObserver' in window) {
-    var reviewItems = review.querySelectorAll('.dr li[data-step]');
-    var reviewVisuals = review.querySelectorAll('.rv-visual');
-    var showStep = function(step){
-      reviewItems.forEach(function(li){ li.classList.toggle('is-active', li.dataset.step === step); });
-      reviewVisuals.forEach(function(v){ v.classList.toggle('is-active', v.dataset.step === step); });
-    };
-    var watchReview = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){ if (entry.isIntersecting) showStep(entry.target.dataset.step); });
-    }, { rootMargin: '-45% 0px -54% 0px' });
-    reviewItems.forEach(function(li){ watchReview.observe(li); });
-    review.classList.add('is-scrolly');
-    showStep('1');
-  }
 
   document.getElementById('yr').textContent = new Date().getFullYear();
 })();
