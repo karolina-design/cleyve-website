@@ -505,8 +505,6 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
   --t-xl:clamp(1.5rem,1.15rem + 1.2vw,2rem);
   --t-2xl:clamp(2rem,1.4rem + 2.4vw,3.1rem);
   --t-hero:clamp(2.7rem,1.5rem + 5vw,5.25rem);
-
-  --cut-angle:-48deg;
 }
 /* Dark bands: the header and hero, the Hive5 investor band and the contact band stay dark; everything else is light so longer text reads easily */
 .theme-dark{
@@ -541,7 +539,7 @@ a{color:var(--cut-ink)}
 
 /* ---------- Header ---------- */
 .site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
-.utility{border-bottom:1px solid var(--line);font-size:var(--t-xs);font-family:var(--f-mono);color:var(--muted);letter-spacing:.02em}
+.utility{border-bottom:1px solid var(--line);font-size:var(--t-xs);color:var(--muted)}
 .utility .wrap{display:flex;justify-content:space-between;gap:16px;padding-block:7px;flex-wrap:wrap}
 .utility a{color:var(--ink-2);text-decoration:none}
 .utility a:hover{color:var(--cut-ink);text-decoration:underline}
@@ -577,14 +575,11 @@ a{color:var(--cut-ink)}
 /* ---------- Shared section pieces ---------- */
 .band{padding-block:clamp(64px,9vw,120px)}
 .band-alt{background:var(--bg-alt)}
-.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:var(--t-xs);font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--cut-ink)}
-.eyebrow::before{content:"";width:16px;height:9px;background:var(--cut);transform:skewX(var(--cut-angle))}
 .sec-head{display:grid;gap:18px;margin-bottom:clamp(36px,5vw,56px)}
 .sec-head h2{font-size:var(--t-2xl)}
 .sec-head .lead{font-size:var(--t-lg);line-height:1.5;color:var(--ink-2)}
 @media (min-width:900px){
   .sec-head.split{grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:64px;align-items:end}
-  .sec-head.split .eyebrow{grid-column:1/-1}
 }
 .more{font-weight:600;color:var(--cut-ink);text-decoration:none;font-size:var(--t-sm)}
 .more:hover{text-decoration:underline;text-underline-offset:3px}
@@ -598,29 +593,23 @@ a{color:var(--cut-ink)}
 .hero .sub{font-size:var(--t-lg);line-height:1.55;max-width:34em}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
 
-/* Hero mark: the Cleyve C split into Cleyve's part (blue) and the lender's part (navy) */
-.hero-mark{position:relative;margin:0;width:100%;max-width:460px;aspect-ratio:1/1;justify-self:center}
-.hero-mark .bigmark{position:absolute;left:0;top:0;width:82%;height:82%;overflow:visible}
-.mark-top{animation:mark-in 1s cubic-bezier(.2,.75,.2,1) both}
-@keyframes mark-in{from{transform:translate(-3px,-3.4px)}to{transform:none}}
-.notes{position:absolute;inset:0}
-.note{position:absolute;left:63%;right:0;display:grid;gap:3px;padding-left:12px;border-left:2px solid var(--logo-cut);font-size:.85rem;line-height:1.35;color:var(--ink-2)}
-.note b{font-family:var(--f-display);font-weight:600;font-size:1.15rem;color:var(--ink);letter-spacing:-.01em}
-/* Labels sit either side of the C's centre (41% of the box), inside its opening */
-.note-top{bottom:calc(59% + 8px)}
-.note-bot{top:calc(41% + 8px);border-left-color:var(--logo-ink)}
-@media (max-width:559px){
-  .hero-mark{aspect-ratio:auto;max-width:360px;display:grid;gap:20px;justify-self:start}
-  .hero-mark .bigmark{position:static;width:78%;height:auto;aspect-ratio:1/1}
-  .notes{position:static;display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  .note{position:static}
-}
+/* Hero card: the three services as a numbered list */
+.hero-card{background:var(--surface);border:1px solid var(--line);padding:clamp(24px,3vw,36px);display:grid;gap:8px;width:100%;max-width:500px;justify-self:end}
+@media (max-width:979px){.hero-card{justify-self:stretch;max-width:none}}
+.hero-card h2{font-size:var(--t-lg);letter-spacing:-.01em}
+.hero-list li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;padding-block:18px;border-bottom:1px solid var(--line)}
+.hero-list li:last-child{border-bottom:0;padding-bottom:0}
+.hero-list a{display:block;color:var(--ink);font-weight:600;text-decoration:none;margin-bottom:2px}
+.hero-list a:hover{color:var(--cut-ink);text-decoration:underline;text-underline-offset:3px}
+.hero-list p{font-size:var(--t-sm)}
+
+/* Numbered circle used in the hero list and the data request list */
+.num{display:inline-grid;place-items:center;flex:none;width:32px;height:32px;border-radius:50%;background:var(--cut-soft);color:var(--cut-ink);font-family:var(--f-display);font-weight:600;font-size:.95rem;line-height:1;font-variant-numeric:tabular-nums}
 
 /* ---------- Audience routes ---------- */
 .routes{display:grid;gap:32px}
 @media (min-width:860px){.routes{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .route{border-top:2px solid var(--ink);padding-top:22px;display:flex;flex-direction:column;gap:12px}
-.route .who{font-family:var(--f-mono);font-size:var(--t-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .route h3{font-size:var(--t-xl)}
 .route .more{margin-top:auto;padding-top:6px}
 
@@ -628,14 +617,13 @@ a{color:var(--cut-ink)}
 .services{display:grid;gap:20px}
 @media (min-width:960px){.services{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .svc{background:var(--surface);border:1px solid var(--line);padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:18px;min-width:0}
-.svc .idx{font-family:var(--f-mono);font-size:var(--t-xs);color:var(--cut-ink);letter-spacing:.06em;text-transform:uppercase}
 .svc h3{font-size:var(--t-xl)}
 .svc .lede{color:var(--ink);font-size:1.05rem;line-height:1.5}
 .ticks{display:grid;gap:10px}
-.ticks li{position:relative;padding-left:24px;font-size:var(--t-sm);line-height:1.5}
-.ticks li::before{content:"";position:absolute;left:2px;top:.55em;width:10px;height:6px;background:var(--cut);transform:skewX(var(--cut-angle))}
+.ticks li{position:relative;padding-left:28px;font-size:var(--t-sm);line-height:1.5}
+.ticks li::before{content:"";position:absolute;left:0;top:.15em;width:18px;height:18px;background:var(--cut);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M4 9.5l3.2 3.2L14 5.8' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M4 9.5l3.2 3.2L14 5.8' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
 .svc .fit{margin-top:auto;padding-top:18px;border-top:1px solid var(--line);font-size:var(--t-sm)}
-.svc .fit b{display:block;font-family:var(--f-mono);font-weight:500;font-size:var(--t-xs);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.svc .fit b{display:block;font-weight:600;color:var(--ink);margin-bottom:2px}
 
 /* ---------- Data request list ---------- */
 .review-grid{display:grid;gap:40px}
@@ -644,18 +632,17 @@ a{color:var(--cut-ink)}
 .review-grid .intro h2{font-size:var(--t-2xl)}
 .tape-fig{margin:6px 0 0;display:grid;gap:10px;min-width:0}
 .tape-scroll{overflow-x:auto;background:var(--surface);border:1px solid var(--line)}
-.tape{width:100%;border-collapse:collapse;font-family:var(--f-mono);font-size:.74rem;line-height:1.2;color:var(--ink);font-variant-numeric:tabular-nums}
-.tape caption{caption-side:top;text-align:left;padding:14px 14px 10px;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cut-ink);border-bottom:1px solid var(--line-strong)}
-.tape th{font-weight:500;font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 14px;border-bottom:1px solid var(--line)}
+.tape{width:100%;border-collapse:collapse;font-size:.85rem;line-height:1.25;color:var(--ink);font-variant-numeric:tabular-nums}
+.tape caption{caption-side:top;text-align:left;padding:14px 14px 12px;font-size:var(--t-sm);font-weight:600;color:var(--ink);border-bottom:1px solid var(--line-strong)}
+.tape th{font-weight:600;font-size:var(--t-xs);color:var(--muted);text-align:left;padding:10px 14px;border-bottom:1px solid var(--line)}
 .tape td{padding:9px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
 .tape tbody tr:last-child td{border-bottom:0}
 .tape .r{text-align:right}
 .tape .late{color:var(--cut-ink)}
-.tape-fig figcaption{font-family:var(--f-mono);font-size:var(--t-xs);color:var(--muted)}
+.tape-fig figcaption{font-size:var(--t-xs);color:var(--muted)}
 @media (max-width:420px){.tape th,.tape td{padding-inline:8px}.tape caption{padding-inline:8px}.tape th:nth-child(4),.tape td:nth-child(4){display:none}}
-.dr li{display:grid;grid-template-columns:4.5rem minmax(0,1fr);gap:16px;padding-block:18px;border-top:1px solid var(--line)}
+.dr li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;padding-block:18px;border-top:1px solid var(--line)}
 .dr li:last-child{border-bottom:1px solid var(--line)}
-.dr code{font-family:var(--f-mono);font-size:var(--t-xs);color:var(--cut-ink);padding-top:4px;letter-spacing:.04em}
 .dr b{display:block;color:var(--ink);font-weight:600;margin-bottom:2px}
 .dr span{font-size:var(--t-sm)}
 
@@ -663,10 +650,10 @@ a{color:var(--cut-ink)}
 .steps{display:grid;gap:28px;counter-reset:step}
 @media (min-width:720px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (min-width:1040px){.steps{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}}
-.steps li{counter-increment:step;position:relative;border-top:1px solid var(--line-strong);padding-top:26px;display:grid;gap:10px;align-content:start}
-.steps li::before{content:"";position:absolute;top:-5px;left:0;width:22px;height:9px;background:var(--cut);transform:skewX(var(--cut-angle))}
-.steps .n{font-family:var(--f-mono);font-size:var(--t-xs);color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.steps li{counter-increment:step;position:relative;display:grid;gap:10px;align-content:start}
+.steps .n{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--cut);color:var(--on-accent);font-family:var(--f-display);font-weight:600;font-size:1.25rem;line-height:1;margin-bottom:8px;position:relative;z-index:1}
 .steps .n::after{content:counter(step)}
+@media (min-width:1040px){.steps li:not(:last-child)::after{content:"";position:absolute;top:24px;left:60px;right:-12px;height:1px;background:var(--line-strong)}}
 .steps h3{font-size:1.3rem}
 .steps p{font-size:var(--t-sm)}
 
@@ -704,7 +691,7 @@ a{color:var(--cut-ink)}
 .more-body{display:grid;gap:12px;padding-top:12px}
 .person .bio{font-size:var(--t-sm)}
 .person .prev{padding-top:12px;border-top:1px solid var(--line);font-size:var(--t-sm)}
-.person .prev b{display:block;font-family:var(--f-mono);font-weight:500;font-size:var(--t-xs);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.person .prev b{display:block;font-weight:600;color:var(--ink);margin-bottom:2px}
 
 /* ---------- Investors (Hive5 invitation) ---------- */
 .h5-panel{background:var(--surface);border:1px solid var(--line);padding:clamp(24px,4vw,56px);display:grid;gap:clamp(32px,4vw,48px)}
@@ -757,8 +744,6 @@ a{color:var(--cut-ink)}
   .office{grid-column:1;grid-row:2}
 }
 .contact h2{color:var(--on-dark);font-size:var(--t-2xl)}
-.contact .eyebrow{color:var(--on-dark)}
-.contact .eyebrow::before{background:var(--on-dark)}
 .contact-copy{display:grid;gap:18px}
 .contact-copy .lead{font-size:var(--t-lg);color:var(--on-dark)}
 .form{background:var(--surface);color:var(--ink-2);padding:clamp(24px,4vw,40px);display:grid;gap:18px}
@@ -782,7 +767,7 @@ a{color:var(--cut-ink)}
 @media (min-width:860px){.foot-grid{grid-template-columns:minmax(0,5fr) repeat(3,minmax(0,2fr))}}
 .foot-brand{display:grid;gap:16px;align-content:start}
 .foot-brand p{font-size:var(--t-sm);color:var(--muted);max-width:32ch}
-.foot-col .foot-h{font-family:var(--f-mono);font-size:var(--t-xs);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;line-height:1.4}
+.foot-col .foot-h{font-family:var(--f-body);font-size:var(--t-sm);font-weight:600;letter-spacing:0;color:var(--ink);margin-bottom:14px;line-height:1.4}
 .foot-col .soon{margin-top:12px;font-size:var(--t-xs);color:var(--muted)}
 .foot-col ul{display:grid;gap:10px}
 .foot-col a{color:var(--ink);text-decoration:none;font-size:var(--t-sm)}
@@ -809,11 +794,10 @@ a{color:var(--cut-ink)}
 .office address strong{font-weight:600}
 .office-map{justify-self:start;margin-top:4px;display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:var(--t-sm);color:var(--on-dark);text-decoration:none;border-bottom:1px solid var(--on-dark-muted);padding-bottom:2px}
 .office-map:hover{border-color:var(--on-dark)}
-.office-h{font-family:var(--f-mono);font-size:var(--t-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--on-dark)}
+.office-h{font-weight:600;color:var(--on-dark)}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .mark-top{animation:none}
   .btn .arr,.faq summary::after{transition:none}
 }
 
@@ -892,8 +876,7 @@ a{color:var(--cut-ink)}
   <section class="hero theme-dark" id="top">
     <div class="wrap hero-grid">
       <div>
-        <span class="eyebrow">Credit partner for European lenders</span>
-        <h1>Credit risk, <span class="accent">cleanly divided.</span></h1>
+        <h1>Credit partner for <span class="accent">European lenders</span></h1>
         <p class="sub">Cleyve buys and manages consumer and business loan portfolios and provides credit protection on new loans. Lenders release capital and keep their focus on originating.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#contact" data-enquiry="sell">Discuss a portfolio <span class="arr" aria-hidden="true">→</span></a>
@@ -901,16 +884,14 @@ a{color:var(--cut-ink)}
         </div>
       </div>
 
-      <figure class="hero-mark">
-        <svg class="bigmark" viewBox="0 0 100 100" role="img" aria-label="The Cleyve C split in two. The blue part is Cleyve, which takes on the credit risk. The navy part is the lender, which keeps the customer.">
-          <path class="mark-top" d="M75.28 28.02 A33.5 33.5 0 1 0 75.28 71.98" fill="none" stroke-width="25" style="stroke:var(--logo-cut)" clip-path="url(#cl-top)"/>
-          <path d="M75.28 28.02 A33.5 33.5 0 1 0 75.28 71.98" fill="none" stroke-width="25" style="stroke:var(--logo-ink)" clip-path="url(#cl-bot)"/>
-        </svg>
-        <figcaption class="notes">
-          <span class="note note-top"><b>Cleyve</b><span>Takes on the credit risk</span></span>
-          <span class="note note-bot"><b>Lender</b><span>Keeps the customer</span></span>
-        </figcaption>
-      </figure>
+      <aside class="hero-card" aria-labelledby="hero-card-title">
+        <h2 id="hero-card-title">What Cleyve does</h2>
+        <ol class="hero-list">
+          <li><span class="num" aria-hidden="true">1</span><div><a href="#portfolio-acquisition">Portfolio acquisition</a><p>We buy consumer and business loan books and pay the purchase price up front.</p></div></li>
+          <li><span class="num" aria-hidden="true">2</span><div><a href="#portfolio-management">Portfolio management</a><p>We run acquired portfolios through to final repayment.</p></div></li>
+          <li><span class="num" aria-hidden="true">3</span><div><a href="#credit-protection">Credit protection</a><p>We cover new loans against credit losses for an agreed fee.</p></div></li>
+        </ol>
+      </aside>
     </div>
   </section>
 
@@ -918,26 +899,22 @@ a{color:var(--cut-ink)}
   <section class="band band-alt" aria-labelledby="routes-title">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow">Who we work with</span>
         <h2 id="routes-title">Find the right starting point</h2>
       </div>
       <div class="routes">
         <article class="route">
-          <span class="who">Lenders</span>
-          <h3>Sell a portfolio or protect new loans</h3>
-          <p>Banks and non-bank lenders in Europe that want to release capital, exit a product or grow with a known cost of risk.</p>
+          <h3>For lenders</h3>
+          <p>Sell a portfolio or protect new loans. For banks and non-bank lenders in Europe that want to release capital, exit a product or grow with a known cost of risk.</p>
           <a class="more" href="#solutions">See our solutions →</a>
         </article>
         <article class="route">
-          <span class="who">Investors · via <img class="lg-h5 only-light" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTQuMDcgNTguMzgiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojZTI2ZmZmO308L3N0eWxlPjwvZGVmcz48ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIj48ZyBpZD0iTGF5ZXJfMS0yIiBkYXRhLW5hbWU9IkxheWVyIDEiPjxwYXRoIGQ9Ik03MS44OSwwVjI1LjY3YzEuMzctMi44NCw0Ljk0LTgsMTQuMjYtOCw4LjgyLDAsMTQuNjQsNS40MSwxNC42NCwxNi4zNVY1Ny4zMUg5My41VjM1LjExYzAtNi40OS0yLjM0LTExLjM1LTkuNTQtMTEuMzUtOC4xNiwwLTEyLDYuNTMtMTIsMTQuNnYxOUg2NC42N1YwWiIvPjxwYXRoIGQ9Ik0xMTEsMGg3LjI1VjguNzFIMTExWm0wLDE4LjczaDcuMjVWNTcuMzFIMTExWiIvPjxwYXRoIGQ9Ik0xMzEuOSwxOC43M2MzLjUyLDguODgsMTEuOTIsMjcuNzQsMTMuMzQsMzEuODloLjFjMS4wNi0zLjI5LDMuNjUtOS44LDEzLjExLTMxLjg5aDcuNDJMMTQ5LDU3LjMxaC03LjkyTDEyNCwxOC43M1oiLz48cGF0aCBkPSJNMTc1LjI4LDM5LjcxYy40MSw3LjQsNS40LDEyLjgzLDEzLjIyLDEyLjgzLDYsMCw5LjM2LTIuNDYsMTEuNDMtNi4yaDcuMjVjLTIuMDgsNS43NC03LjUzLDEyLTE5LjA3LDEyLTEzLjgyLDAtMjAuMTEtMTAuMS0yMC4xMS0yMC4yNCwwLTExLjY1LDcuNzYtMjAuNDcsMTkuOTMtMjAuNDcsMTQuNjUsMCwxOS44MSwxMC43MiwxOS44MSwyMC4xMywwLC42NSwwLDEuMTYsMCwxLjkxWm0yNC45LTUuMTVjLS4zMy00LjU5LTIuNzYtMTEuMjUtMTIuMy0xMS4yNS03LjkxLDAtMTEuNzgsNC45NC0xMi40NSwxMS4yNVoiLz48cGF0aCBkPSJNMjUxLjQ5LDEySDIyNi4yMWMtLjY0LDQuNTYtMS44MiwxMS41OS0yLjM2LDE0LjY1LDIuMzItMi4xMiw2LTQuMDksMTIuNTEtNC4wOSwxMC41OCwwLDE3LjcxLDYuNzQsMTcuNzEsMTcuMSwwLDExLjEtNy4zNywxOC43NS0xOS44NiwxOC43NS0xMi4zMSwwLTE4LjM2LTYuOTQtMTkuNTgtMTQuNDVoNy4xOGMxLjY3LDUuMzcsNS44NCw4LjM4LDEyLjU1LDguMzgsNy45LDAsMTIuMzUtNSwxMi4zNS0xMi4yOCwwLTUuNC0yLjg1LTExLjU1LTExLjktMTEuNTUtNy42MSwwLTEwLjczLDMuMTktMTIuNzIsNy4xM2wtNi4zNi0xYzEuNDgtNy4wNiwzLjkxLTIyLjg2LDQuNTctMjguODVoMzIuMDdaIi8+PHJlY3QgY2xhc3M9ImNscy0xIiB4PSI0LjAyIiB5PSI0Mi4xNiIgd2lkdGg9IjM2LjA2IiBoZWlnaHQ9IjguNTIiIHJ4PSIxLjE4Ii8+PHJlY3QgY2xhc3M9ImNscy0xIiB4PSI0LjAyIiB5PSIxMi45OCIgd2lkdGg9IjM2LjA2IiBoZWlnaHQ9IjguNTIiIHJ4PSIxLjE4Ii8+PHJlY3QgY2xhc3M9ImNscy0xIiB5PSIyNy41NyIgd2lkdGg9IjQ0LjEiIGhlaWdodD0iOC41MiIgcng9IjEuMTgiLz48L2c+PC9nPjwvc3ZnPg==" alt="Hive5" width="61" height="14"><img class="lg-h5 only-dark" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTQuMDcgNTguMzgiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojZTI2ZmZmO308L3N0eWxlPjwvZGVmcz48ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIj48ZyBpZD0iTGF5ZXJfMS0yIiBkYXRhLW5hbWU9IkxheWVyIDEiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik03MS44OSwwVjI1LjY3YzEuMzctMi44NCw0Ljk0LTgsMTQuMjYtOCw4LjgyLDAsMTQuNjQsNS40MSwxNC42NCwxNi4zNVY1Ny4zMUg5My41VjM1LjExYzAtNi40OS0yLjM0LTExLjM1LTkuNTQtMTEuMzUtOC4xNiwwLTEyLDYuNTMtMTIsMTQuNnYxOUg2NC42N1YwWiIvPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0xMTEsMGg3LjI1VjguNzFIMTExWm0wLDE4LjczaDcuMjVWNTcuMzFIMTExWiIvPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0xMzEuOSwxOC43M2MzLjUyLDguODgsMTEuOTIsMjcuNzQsMTMuMzQsMzEuODloLjFjMS4wNi0zLjI5LDMuNjUtOS44LDEzLjExLTMxLjg5aDcuNDJMMTQ5LDU3LjMxaC03LjkyTDEyNCwxOC43M1oiLz48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMTc1LjI4LDM5LjcxYy40MSw3LjQsNS40LDEyLjgzLDEzLjIyLDEyLjgzLDYsMCw5LjM2LTIuNDYsMTEuNDMtNi4yaDcuMjVjLTIuMDgsNS43NC03LjUzLDEyLTE5LjA3LDEyLTEzLjgyLDAtMjAuMTEtMTAuMS0yMC4xMS0yMC4yNCwwLTExLjY1LDcuNzYtMjAuNDcsMTkuOTMtMjAuNDcsMTQuNjUsMCwxOS44MSwxMC43MiwxOS44MSwyMC4xMywwLC42NSwwLDEuMTYsMCwxLjkxWm0yNC45LTUuMTVjLS4zMy00LjU5LTIuNzYtMTEuMjUtMTIuMy0xMS4yNS03LjkxLDAtMTEuNzgsNC45NC0xMi40NSwxMS4yNVoiLz48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMjUxLjQ5LDEySDIyNi4yMWMtLjY0LDQuNTYtMS44MiwxMS41OS0yLjM2LDE0LjY1LDIuMzItMi4xMiw2LTQuMDksMTIuNTEtNC4wOSwxMC41OCwwLDE3LjcxLDYuNzQsMTcuNzEsMTcuMSwwLDExLjEtNy4zNywxOC43NS0xOS44NiwxOC43NS0xMi4zMSwwLTE4LjM2LTYuOTQtMTkuNTgtMTQuNDVoNy4xOGMxLjY3LDUuMzcsNS44NCw4LjM4LDEyLjU1LDguMzgsNy45LDAsMTIuMzUtNSwxMi4zNS0xMi4yOCwwLTUuNC0yLjg1LTExLjU1LTExLjktMTEuNTUtNy42MSwwLTEwLjczLDMuMTktMTIuNzIsNy4xM2wtNi4zNi0xYzEuNDgtNy4wNiwzLjkxLTIyLjg2LDQuNTctMjguODVoMzIuMDdaIi8+PHJlY3QgY2xhc3M9ImNscy0xIiB4PSI0LjAyIiB5PSI0Mi4xNiIgd2lkdGg9IjM2LjA2IiBoZWlnaHQ9IjguNTIiIHJ4PSIxLjE4Ii8+PHJlY3QgY2xhc3M9ImNscy0xIiB4PSI0LjAyIiB5PSIxMi45OCIgd2lkdGg9IjM2LjA2IiBoZWlnaHQ9IjguNTIiIHJ4PSIxLjE4Ii8+PHJlY3QgY2xhc3M9ImNscy0xIiB5PSIyNy41NyIgd2lkdGg9IjQ0LjEiIGhlaWdodD0iOC41MiIgcng9IjEuMTgiLz48L2c+PC9nPjwvc3ZnPg==" alt="Hive5" width="61" height="14"></span>
-          <h3>Fund Cleyve through Hive5</h3>
+          <h3>For investors</h3>
           <p>Cleyve's portfolio purchases are funded by a business loan that investors can take part in on the Hive5 platform.</p>
           <a class="more" href="#investors">How investing works →</a>
         </article>
         <article class="route">
-          <span class="who">Borrowers</span>
-          <h3>Your loan has moved to Cleyve</h3>
-          <p>What stays the same after a portfolio transfer, how payments work and who to talk to if you need help.</p>
+          <h3>For borrowers</h3>
+          <p>Has your loan moved to Cleyve? See what stays the same after a portfolio transfer, how payments work and who to talk to if you need help.</p>
           <a class="more" href="#borrowers">Borrower information →</a>
         </article>
       </div>
@@ -948,14 +925,12 @@ a{color:var(--cut-ink)}
   <section class="band" id="solutions" aria-labelledby="solutions-title">
     <div class="wrap">
       <div class="sec-head split">
-        <span class="eyebrow">Solutions</span>
-        <h2 id="solutions-title">One partner from transfer to final repayment</h2>
-        <p class="lead">Use one service or combine them. Each arrangement is scoped and priced around the portfolio in question.</p>
+        <h2 id="solutions-title">Our services</h2>
+        <p class="lead">One partner from transfer to final repayment. Use one service or combine them; each arrangement is scoped and priced around the portfolio.</p>
       </div>
 
       <div class="services">
         <article class="svc" id="portfolio-acquisition">
-          <span class="idx">Acquisition</span>
           <h3>Portfolio acquisition</h3>
           <p class="lede">Sell a loan book, or a defined part of it, and receive the purchase price up front.</p>
           <ul class="ticks">
@@ -963,10 +938,9 @@ a{color:var(--cut-ink)}
             <li>Whole books or selected segments and vintages</li>
             <li>Pricing built on loan-level data</li>
           </ul>
-          <p class="fit"><b>Suits</b>Lenders exiting a product or market, or releasing capital for new lending.</p>
+          <p class="fit"><b>Best for</b>Lenders exiting a product or market, or releasing capital for new lending.</p>
         </article>
         <article class="svc" id="portfolio-management">
-          <span class="idx">Management</span>
           <h3>Portfolio management</h3>
           <p class="lede">We run acquired portfolios through to final repayment.</p>
           <ul class="ticks">
@@ -974,10 +948,9 @@ a{color:var(--cut-ink)}
             <li>Collections and debt recovery, starting with amicable solutions</li>
             <li>Onward sale of portfolio segments where appropriate</li>
           </ul>
-          <p class="fit"><b>Suits</b>Portfolios that need active, long-term attention after transfer.</p>
+          <p class="fit"><b>Best for</b>Portfolios that need active, long-term attention after transfer.</p>
         </article>
         <article class="svc" id="credit-protection">
-          <span class="idx">Protection</span>
           <h3>Credit protection</h3>
           <p class="lede">Protect new loans against credit losses for an agreed fee.</p>
           <ul class="ticks">
@@ -985,7 +958,7 @@ a{color:var(--cut-ink)}
             <li>Eligibility, limits and fees agreed in contract</li>
             <li>Lenders keep originating with a known cost of risk</li>
           </ul>
-          <p class="fit"><b>Suits</b>Growing lenders that want predictable credit costs.</p>
+          <p class="fit"><b>Best for</b>Growing lenders that want predictable credit costs.</p>
         </article>
       </div>
 
@@ -996,8 +969,7 @@ a{color:var(--cut-ink)}
   <section class="band band-alt" id="portfolio-review" aria-labelledby="review-title">
     <div class="wrap review-grid">
       <div class="intro">
-        <span class="eyebrow">Portfolio review</span>
-        <h2 id="review-title">Priced on the data, line by line</h2>
+        <h2 id="review-title">What we review before making an offer</h2>
         <p>Before we make an offer we review the portfolio at loan level. A complete data pack shortens the process. These are the first items we ask for.</p>
         <figure class="tape-fig">
           <div class="tape-scroll">
@@ -1018,12 +990,12 @@ a{color:var(--cut-ink)}
         <p><a class="more" href="#contact" data-enquiry="sell">Request the full data list →</a></p>
       </div>
       <ol class="dr" aria-label="Data request list">
-        <li><code>DR-01</code><div><b>Loan-level data tape</b><span>Balance, interest rate, term, origination date and current status for every loan.</span></div></li>
-        <li><code>DR-02</code><div><b>Performance by vintage</b><span>Arrears buckets (1–30, 31–60, 61–90 and 90+ days past due), defaults and recoveries.</span></div></li>
-        <li><code>DR-03</code><div><b>Cash collection history</b><span>Monthly collections since origination, split by vintage.</span></div></li>
-        <li><code>DR-04</code><div><b>Underwriting policy</b><span>Scorecards, affordability checks and how they have changed over time.</span></div></li>
-        <li><code>DR-05</code><div><b>Servicing set-up</b><span>Who services the loans today, on which systems, and how borrowers are contacted.</span></div></li>
-        <li><code>DR-06</code><div><b>Legal documentation</b><span>Licences, loan agreement templates and assignment terms.</span></div></li>
+        <li><span class="num" aria-hidden="true">1</span><div><b>Loan-level data tape</b><span>Balance, interest rate, term, origination date and current status for every loan.</span></div></li>
+        <li><span class="num" aria-hidden="true">2</span><div><b>Performance by vintage</b><span>Arrears buckets (1–30, 31–60, 61–90 and 90+ days past due), defaults and recoveries.</span></div></li>
+        <li><span class="num" aria-hidden="true">3</span><div><b>Cash collection history</b><span>Monthly collections since origination, split by vintage.</span></div></li>
+        <li><span class="num" aria-hidden="true">4</span><div><b>Underwriting policy</b><span>Scorecards, affordability checks and how they have changed over time.</span></div></li>
+        <li><span class="num" aria-hidden="true">5</span><div><b>Servicing set-up</b><span>Who services the loans today, on which systems, and how borrowers are contacted.</span></div></li>
+        <li><span class="num" aria-hidden="true">6</span><div><b>Legal documentation</b><span>Licences, loan agreement templates and assignment terms.</span></div></li>
       </ol>
     </div>
   </section>
@@ -1032,15 +1004,14 @@ a{color:var(--cut-ink)}
   <section class="band" id="process" aria-labelledby="process-title">
     <div class="wrap">
       <div class="sec-head split">
-        <span class="eyebrow">How we work</span>
-        <h2 id="process-title">From first call to transfer</h2>
-        <p class="lead">Four stages, each with a clear output, so both sides know what comes next.</p>
+        <h2 id="process-title">How we work</h2>
+        <p class="lead">Four stages from first call to transfer, each with a clear output, so both sides know what comes next.</p>
       </div>
       <ol class="steps">
-        <li><span class="n">Stage </span><h3>Introduction</h3><p>Tell us about the portfolio and what you want to achieve. We sign an NDA before any data changes hands.</p></li>
-        <li><span class="n">Stage </span><h3>Data review</h3><p>We work through the data pack, test it against our model and come back with questions.</p></li>
-        <li><span class="n">Stage </span><h3>Terms</h3><p>We agree price or fee, scope and responsibilities, and set them out in contract.</p></li>
-        <li><span class="n">Stage </span><h3>Transfer and management</h3><p>The portfolio moves to Cleyve, or cover starts on new loans. Reporting follows the agreed schedule.</p></li>
+        <li><span class="n" aria-hidden="true"></span><h3>Introduction</h3><p>Tell us about the portfolio and what you want to achieve. We sign an NDA before any data changes hands.</p></li>
+        <li><span class="n" aria-hidden="true"></span><h3>Data review</h3><p>We work through the data pack, test it against our model and come back with questions.</p></li>
+        <li><span class="n" aria-hidden="true"></span><h3>Terms</h3><p>We agree price or fee, scope and responsibilities, and set them out in contract.</p></li>
+        <li><span class="n" aria-hidden="true"></span><h3>Transfer and management</h3><p>The portfolio moves to Cleyve, or cover starts on new loans. Reporting follows the agreed schedule.</p></li>
       </ol>
     </div>
   </section>
@@ -1050,18 +1021,15 @@ a{color:var(--cut-ink)}
     <div class="wrap">
       <div class="about-grid">
         <div class="about-copy">
-          <span class="eyebrow">About Cleyve</span>
-          <h2 id="about-title">Built on established lending experience</h2>
+          <h2 id="about-title">About Cleyve</h2>
         </div>
         <div class="about-copy">
           <p>Cleyve is a Latvian company within Hive Finance Group, which also runs the Hive5 investment platform and lending businesses in Romania and Poland. That gives Cleyve an established funding channel and in-house lending experience from day one.</p>
-          <p>The diagonal cut in the Cleyve mark stands for careful selection and a clear split of responsibility between the lender and us.</p>
         </div>
       </div>
 
       <div class="team-head">
-        <span class="eyebrow">Leadership</span>
-        <h3>The people setting up Cleyve</h3>
+        <h3>Leadership team</h3>
       </div>
       <div class="team">
         <article class="person">
@@ -1123,7 +1091,6 @@ a{color:var(--cut-ink)}
               <img class="only-light" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTQuMDcgNTguMzgiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojZTI2ZmZmO308L3N0eWxlPjwvZGVmcz48ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIj48ZyBpZD0iTGF5ZXJfMS0yIiBkYXRhLW5hbWU9IkxheWVyIDEiPjxwYXRoIGQ9Ik03MS44OSwwVjI1LjY3YzEuMzctMi44NCw0Ljk0LTgsMTQuMjYtOCw4LjgyLDAsMTQuNjQsNS40MSwxNC42NCwxNi4zNVY1Ny4zMUg5My41VjM1LjExYzAtNi40OS0yLjM0LTExLjM1LTkuNTQtMTEuMzUtOC4xNiwwLTEyLDYuNTMtMTIsMTQuNnYxOUg2NC42N1YwWiIvPjxwYXRoIGQ9Ik0xMTEsMGg3LjI1VjguNzFIMTExWm0wLDE4LjczaDcuMjVWNTcuMzFIMTExWiIvPjxwYXRoIGQ9Ik0xMzEuOSwxOC43M2MzLjUyLDguODgsMTEuOTIsMjcuNzQsMTMuMzQsMzEuODloLjFjMS4wNi0zLjI5LDMuNjUtOS44LDEzLjExLTMxLjg5aDcuNDJMMTQ5LDU3LjMxaC03LjkyTDEyNCwxOC43M1oiLz48cGF0aCBkPSJNMTc1LjI4LDM5LjcxYy40MSw3LjQsNS40LDEyLjgzLDEzLjIyLDEyLjgzLDYsMCw5LjM2LTIuNDYsMTEuNDMtNi4yaDcuMjVjLTIuMDgsNS43NC03LjUzLDEyLTE5LjA3LDEyLTEzLjgyLDAtMjAuMTEtMTAuMS0yMC4xMS0yMC4yNCwwLTExLjY1LDcuNzYtMjAuNDcsMTkuOTMtMjAuNDcsMTQuNjUsMCwxOS44MSwxMC43MiwxOS44MSwyMC4xMywwLC42NSwwLDEuMTYsMCwxLjkxWm0yNC45LTUuMTVjLS4zMy00LjU5LTIuNzYtMTEuMjUtMTIuMy0xMS4yNS03LjkxLDAtMTEuNzgsNC45NC0xMi40NSwxMS4yNVoiLz48cGF0aCBkPSJNMjUxLjQ5LDEySDIyNi4yMWMtLjY0LDQuNTYtMS44MiwxMS41OS0yLjM2LDE0LjY1LDIuMzItMi4xMiw2LTQuMDksMTIuNTEtNC4wOSwxMC41OCwwLDE3LjcxLDYuNzQsMTcuNzEsMTcuMSwwLDExLjEtNy4zNywxOC43NS0xOS44NiwxOC43NS0xMi4zMSwwLTE4LjM2LTYuOTQtMTkuNTgtMTQuNDVoNy4xOGMxLjY3LDUuMzcsNS44NCw4LjM4LDEyLjU1LDguMzgsNy45LDAsMTIuMzUtNSwxMi4zNS0xMi4yOCwwLTUuNC0yLjg1LTExLjU1LTExLjktMTEuNTUtNy42MSwwLTEwLjczLDMuMTktMTIuNzIsNy4xM2wtNi4zNi0xYzEuNDgtNy4wNiwzLjkxLTIyLjg2LDQuNTctMjguODVoMzIuMDdaIi8+PHJlY3QgY2xhc3M9ImNscy0xIiB4PSI0LjAyIiB5PSI0Mi4xNiIgd2lkdGg9IjM2LjA2IiBoZWlnaHQ9IjguNTIiIHJ4PSIxLjE4Ii8+PHJlY3QgY2xhc3M9ImNscy0xIiB4PSI0LjAyIiB5PSIxMi45OCIgd2lkdGg9IjM2LjA2IiBoZWlnaHQ9IjguNTIiIHJ4PSIxLjE4Ii8+PHJlY3QgY2xhc3M9ImNscy0xIiB5PSIyNy41NyIgd2lkdGg9IjQ0LjEiIGhlaWdodD0iOC41MiIgcng9IjEuMTgiLz48L2c+PC9nPjwvc3ZnPg==" alt="Hive5" width="131" height="30">
               <img class="only-dark" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTQuMDcgNTguMzgiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojZTI2ZmZmO308L3N0eWxlPjwvZGVmcz48ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIj48ZyBpZD0iTGF5ZXJfMS0yIiBkYXRhLW5hbWU9IkxheWVyIDEiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik03MS44OSwwVjI1LjY3YzEuMzctMi44NCw0Ljk0LTgsMTQuMjYtOCw4LjgyLDAsMTQuNjQsNS40MSwxNC42NCwxNi4zNVY1Ny4zMUg5My41VjM1LjExYzAtNi40OS0yLjM0LTExLjM1LTkuNTQtMTEuMzUtOC4xNiwwLTEyLDYuNTMtMTIsMTQuNnYxOUg2NC42N1YwWiIvPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0xMTEsMGg3LjI1VjguNzFIMTExWm0wLDE4LjczaDcuMjVWNTcuMzFIMTExWiIvPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0xMzEuOSwxOC43M2MzLjUyLDguODgsMTEuOTIsMjcuNzQsMTMuMzQsMzEuODloLjFjMS4wNi0zLjI5LDMuNjUtOS44LDEzLjExLTMxLjg5aDcuNDJMMTQ5LDU3LjMxaC03LjkyTDEyNCwxOC43M1oiLz48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMTc1LjI4LDM5LjcxYy40MSw3LjQsNS40LDEyLjgzLDEzLjIyLDEyLjgzLDYsMCw5LjM2LTIuNDYsMTEuNDMtNi4yaDcuMjVjLTIuMDgsNS43NC03LjUzLDEyLTE5LjA3LDEyLTEzLjgyLDAtMjAuMTEtMTAuMS0yMC4xMS0yMC4yNCwwLTExLjY1LDcuNzYtMjAuNDcsMTkuOTMtMjAuNDcsMTQuNjUsMCwxOS44MSwxMC43MiwxOS44MSwyMC4xMywwLC42NSwwLDEuMTYsMCwxLjkxWm0yNC45LTUuMTVjLS4zMy00LjU5LTIuNzYtMTEuMjUtMTIuMy0xMS4yNS03LjkxLDAtMTEuNzgsNC45NC0xMi40NSwxMS4yNVoiLz48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMjUxLjQ5LDEySDIyNi4yMWMtLjY0LDQuNTYtMS44MiwxMS41OS0yLjM2LDE0LjY1LDIuMzItMi4xMiw2LTQuMDksMTIuNTEtNC4wOSwxMC41OCwwLDE3LjcxLDYuNzQsMTcuNzEsMTcuMSwwLDExLjEtNy4zNywxOC43NS0xOS44NiwxOC43NS0xMi4zMSwwLTE4LjM2LTYuOTQtMTkuNTgtMTQuNDVoNy4xOGMxLjY3LDUuMzcsNS44NCw4LjM4LDEyLjU1LDguMzgsNy45LDAsMTIuMzUtNSwxMi4zNS0xMi4yOCwwLTUuNC0yLjg1LTExLjU1LTExLjktMTEuNTUtNy42MSwwLTEwLjczLDMuMTktMTIuNzIsNy4xM2wtNi4zNi0xYzEuNDgtNy4wNiwzLjkxLTIyLjg2LDQuNTctMjguODVoMzIuMDdaIi8+PHJlY3QgY2xhc3M9ImNscy0xIiB4PSI0LjAyIiB5PSI0Mi4xNiIgd2lkdGg9IjM2LjA2IiBoZWlnaHQ9IjguNTIiIHJ4PSIxLjE4Ii8+PHJlY3QgY2xhc3M9ImNscy0xIiB4PSI0LjAyIiB5PSIxMi45OCIgd2lkdGg9IjM2LjA2IiBoZWlnaHQ9IjguNTIiIHJ4PSIxLjE4Ii8+PHJlY3QgY2xhc3M9ImNscy0xIiB5PSIyNy41NyIgd2lkdGg9IjQ0LjEiIGhlaWdodD0iOC41MiIgcng9IjEuMTgiLz48L2c+PC9nPjwvc3ZnPg==" alt="Hive5" width="131" height="30">
             </span>
-            <span class="eyebrow">For investors</span>
             <h2 id="investors-title">Invest in Cleyve's portfolio through Hive5</h2>
             <p class="lead">Cleyve's portfolio purchases are funded through Hive5, an investment platform where investors can take part and earn interest. Investing on Hive5 starts from €10.</p>
             <div class="h5-actions">
@@ -1150,7 +1117,6 @@ a{color:var(--cut-ink)}
     <div class="wrap">
       <div class="borrow">
         <div class="borrow-head">
-          <span class="eyebrow">For borrowers</span>
           <h2 id="borrowers-title">Has your loan moved to Cleyve?</h2>
           <p>When a lender transfers a portfolio to us, we take over the management of your loan. Here is what that means for you.</p>
         </div>
@@ -1168,8 +1134,7 @@ a{color:var(--cut-ink)}
   <section class="band" id="faq" aria-labelledby="faq-title">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow">FAQ</span>
-        <h2 id="faq-title">Questions, answered</h2>
+        <h2 id="faq-title">Frequently asked questions</h2>
       </div>
       <div class="faq">
         <details>
@@ -1204,9 +1169,8 @@ a{color:var(--cut-ink)}
   <section class="band contact" id="contact" aria-labelledby="contact-title">
     <div class="wrap contact-grid">
       <div class="contact-copy">
-        <span class="eyebrow">Contact</span>
-        <h2 id="contact-title">Start with a short brief</h2>
-        <p class="lead">A few lines are enough to arrange a first call.</p>
+        <h2 id="contact-title">Contact us</h2>
+        <p class="lead">Send a short brief. A few lines are enough to arrange a first call.</p>
       </div>
 
       <form class="form" id="enquiry" novalidate>
