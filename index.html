@@ -580,10 +580,7 @@ a{color:var(--cut-ink)}
 .band-alt{background:var(--bg-alt)}
 .sec-head{display:grid;gap:18px;margin-bottom:clamp(36px,5vw,56px)}
 .sec-head h2{font-size:var(--t-2xl)}
-.sec-head .lead{font-size:var(--t-lg);line-height:1.5;color:var(--ink-2)}
-@media (min-width:900px){
-  .sec-head.split{grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:64px;align-items:end}
-}
+.sec-head .lead{font-size:var(--t-lg);line-height:1.5;color:var(--ink-2);max-width:60ch}
 .more{font-weight:600;color:var(--cut-ink);text-decoration:none;font-size:var(--t-sm)}
 .more:hover{text-decoration:underline;text-underline-offset:3px}
 
@@ -658,13 +655,13 @@ a{color:var(--cut-ink)}
 .dr span{font-size:var(--t-sm)}
 
 /* ---------- Process ---------- */
-.steps{display:grid;gap:28px;counter-reset:step}
+.steps{display:grid;gap:28px;counter-reset:step;position:relative}
 @media (min-width:720px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (min-width:1040px){.steps{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}}
 .steps li{counter-increment:step;position:relative;display:grid;gap:10px;align-content:start}
 .steps .n{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--cut);color:var(--on-accent);font-family:var(--f-display);font-weight:600;font-size:1.25rem;line-height:1;margin-bottom:8px;position:relative;z-index:1}
 .steps .n::after{content:counter(step)}
-@media (min-width:1040px){.steps li:not(:last-child)::after{content:"";position:absolute;top:24px;left:60px;right:-12px;height:1px;background:var(--line-strong)}}
+@media (min-width:1040px){.steps::before{content:"";position:absolute;top:23px;left:24px;right:calc((100% - 72px) / 4 - 24px);height:2px;background:var(--line-strong)}}
 .steps h3{font-size:1.3rem}
 .steps p{font-size:var(--t-sm)}
 
@@ -676,14 +673,15 @@ a{color:var(--cut-ink)}
 
 .team-head{margin-top:clamp(56px,7vw,88px);display:grid;gap:10px;margin-bottom:28px}
 .team-head h3{font-size:var(--t-xl)}
-.team{display:grid;gap:24px;align-items:start}
+.team{display:grid;gap:24px}
+.team:has(.person-more[open]){align-items:start}
 @media (min-width:640px){.team{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,32px)}}
-.person{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;display:grid;min-width:0}
+.person{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;display:grid;grid-template-rows:auto 1fr;min-width:0}
 .person-photo{margin:0;aspect-ratio:4/5;overflow:hidden;background:var(--bg-alt);border-bottom:1px solid var(--line)}
 .person-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 18%;filter:grayscale(1) contrast(1.03);transition:filter .35s ease}
 .person:hover .person-photo img,.person:focus-within .person-photo img{filter:none}
 @media (prefers-reduced-motion:reduce){.person-photo img{transition:none}}
-.person-body{padding:clamp(18px,2vw,26px);display:grid;gap:6px;align-content:start}
+.person-body{padding:clamp(18px,2vw,26px);display:grid;grid-template-rows:auto auto 1fr auto;gap:6px}
 .person-name{display:flex;align-items:center;gap:10px;min-height:28px}
 .person h4{font-size:clamp(1.15rem,1rem + .5vw,1.4rem)}
 .person .li{display:inline-grid;place-items:center;width:28px;height:28px;color:var(--cut);flex:none}
@@ -944,7 +942,7 @@ a{color:var(--cut-ink)}
   <!-- Solutions -->
   <section class="band" id="solutions" aria-labelledby="solutions-title">
     <div class="wrap">
-      <div class="sec-head split">
+      <div class="sec-head">
         <h2 id="solutions-title">Our services</h2>
         <p class="lead">One partner from transfer to final repayment. Use one service or combine them; each arrangement is scoped and priced around the portfolio.</p>
       </div>
@@ -1023,7 +1021,7 @@ a{color:var(--cut-ink)}
   <!-- Process -->
   <section class="band" id="process" aria-labelledby="process-title">
     <div class="wrap">
-      <div class="sec-head split">
+      <div class="sec-head">
         <h2 id="process-title">How we work</h2>
         <p class="lead">Four stages from first call to transfer, each with a clear output, so both sides know what comes next.</p>
       </div>
