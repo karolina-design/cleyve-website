@@ -1209,12 +1209,12 @@ a{color:var(--cut-ink)}
         </div>
         <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" maxlength="5000" required placeholder="Market, loan type and what you would like to achieve"></textarea></div>
         <p class="form-privacy">SIA Hive Credit Partners uses your details to respond to your enquiry. <a href="#privacy-details">How we use your details</a>.</p>
-        <details class="privacy-details" id="privacy-details"><summary>Privacy information</summary><div><p><strong>Who is responsible.</strong> SIA Hive Credit Partners, Gustava Zemgala gatve 74, Rīga, LV-1039, Latvia, is the controller of your enquiry data. Contact us at <a href="mailto:support@hive5.com">support@hive5.com</a>, which currently handles enquiries for Cleyve.</p>
+        <details class="privacy-details" id="privacy-details"><summary>Privacy information</summary><div><p><strong>Who is responsible.</strong> SIA Hive Credit Partners, Gustava Zemgala gatve 74, Rīga, LV-1039, Latvia, is the controller of your enquiry data. Contact us at <a href="mailto:info@cleyve.com">info@cleyve.com</a>.</p>
 <p><strong>What we use and why.</strong> We use your name, email address, message and any optional company, country, topic or portfolio information to answer and manage your enquiry. This is based on our legitimate interest in responding to communications (Article 6(1)(f) GDPR), or Article 6(1)(b) where you ask us to take steps towards a contract with you. Providing the required fields is necessary for us to respond. We do not add you to a marketing list.</p>
-<p><strong>Who receives your details.</strong> Enquiries are currently delivered to <a href="mailto:support@hive5.com">support@hive5.com</a> and handled for Cleyve by the Hive5 support team. Hosting, form delivery and email service providers also process the data needed to operate these services, including technical information such as IP addresses, browser details and timestamps for delivery and security.</p>
-<p><strong>How long we keep them.</strong> We follow the existing Hive5 retention arrangements. Correspondence is kept for as long as needed to handle the enquiry and related follow-up, and for any additional period required by applicable law, limitation periods or the establishment, exercise or defence of legal claims. Contact us for the retention period that applies to your enquiry.</p>
+<p><strong>Who receives your details.</strong> Enquiries are delivered to <a href="mailto:info@cleyve.com">info@cleyve.com</a> and handled by the Cleyve team. The form is sent through the form service of the Hive5 website, which is operated within our group. Hosting, form delivery and email service providers also process the data needed to operate these services, including technical information such as IP addresses, browser details and timestamps for delivery and security.</p>
+<p><strong>How long we keep them.</strong> Correspondence is kept for as long as needed to handle the enquiry and related follow-up, and for any additional period required by applicable law, limitation periods or the establishment, exercise or defence of legal claims. Contact us for the retention period that applies to your enquiry.</p>
 <p><strong>International processing.</strong> Our hosting and email providers may process information outside the European Economic Area. Transfers are subject to applicable adequacy decisions or appropriate GDPR safeguards, such as standard contractual clauses. You can ask us for details of the providers and safeguards applicable to your information.</p>
-<p><strong>Your rights.</strong> You may request access, correction, erasure or restriction of your data, object to processing based on legitimate interests, and request portability where applicable. Contact <a href="mailto:support@hive5.com">support@hive5.com</a>. You may also complain to the Latvian Data State Inspectorate or your local supervisory authority. We do not use your enquiry for automated decision-making or profiling.</p>
+<p><strong>Your rights.</strong> You may request access, correction, erasure or restriction of your data, object to processing based on legitimate interests, and request portability where applicable. Contact <a href="mailto:info@cleyve.com">info@cleyve.com</a>. You may also complain to the Latvian Data State Inspectorate or your local supervisory authority. We do not use your enquiry for automated decision-making or profiling.</p>
 <p>Only share information needed for your enquiry. Please do not submit identity documents, account credentials or loan-level personal data through this form. For website storage information, read our <a href="cookie-policy.html">Cookie policy</a>.</p></div></details>
         <div class="form-trap" aria-hidden="true"><label for="f-website">Leave this field empty</label><input id="f-website" name="website" tabindex="-1" autocomplete="off"></div>
         <div class="form-foot">
@@ -1347,10 +1347,10 @@ a{color:var(--cut-ink)}
         form.reset();
         showStatus('Thank you. Your enquiry has been sent. The Cleyve team will reply by email.', 'success');
       } else {
-        showStatus((result.status === 'validation_failed' ? 'Please check the required fields and your email address. ' : 'Your enquiry could not be sent. ') + 'Please try again or email support@hive5.com.', 'error');
+        showStatus((result.status === 'validation_failed' ? 'Please check the required fields and your email address. ' : 'Your enquiry could not be sent. ') + 'Please try again or email info@cleyve.com.', 'error');
       }
     } catch (error) {
-      showStatus('We could not confirm delivery. Your message is still in the form. Please try again or email support@hive5.com.', 'error');
+      showStatus('We could not confirm delivery. Your message is still in the form. Please try again or email info@cleyve.com.', 'error');
     } finally {
       clearTimeout(timeout);
       sending = false;
