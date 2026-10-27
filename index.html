@@ -593,15 +593,23 @@ a{color:var(--cut-ink)}
 .hero .sub{font-size:var(--t-lg);line-height:1.55;max-width:34em}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
 
-/* Hero card: the three services as a numbered list */
-.hero-card{background:var(--surface);border:1px solid var(--line);padding:clamp(24px,3vw,36px);display:grid;gap:8px;width:100%;max-width:500px;justify-self:end}
-@media (max-width:979px){.hero-card{justify-self:stretch;max-width:none}}
-.hero-card h2{font-size:var(--t-lg);letter-spacing:-.01em}
-.hero-list li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;padding-block:18px;border-bottom:1px solid var(--line)}
-.hero-list li:last-child{border-bottom:0;padding-bottom:0}
-.hero-list a{display:block;color:var(--ink);font-weight:600;text-decoration:none;margin-bottom:2px}
-.hero-list a:hover{color:var(--cut-ink);text-decoration:underline;text-underline-offset:3px}
-.hero-list p{font-size:var(--t-sm)}
+/* Hero mark: the Cleyve C split into Cleyve's part (blue) and the lender's part (navy) */
+.hero-mark{position:relative;margin:0;width:100%;max-width:460px;aspect-ratio:1/1;justify-self:center}
+.hero-mark .bigmark{position:absolute;left:0;top:0;width:82%;height:82%;overflow:visible}
+.mark-top{animation:mark-in 1s cubic-bezier(.2,.75,.2,1) both}
+@keyframes mark-in{from{transform:translate(-3px,-3.4px)}to{transform:none}}
+.notes{position:absolute;inset:0}
+.note{position:absolute;left:63%;right:0;display:grid;gap:3px;padding-left:12px;border-left:2px solid var(--logo-cut);font-size:.85rem;line-height:1.35;color:var(--ink-2)}
+.note b{font-family:var(--f-display);font-weight:600;font-size:1.15rem;color:var(--ink);letter-spacing:-.01em}
+/* Labels sit either side of the C's centre (41% of the box), inside its opening */
+.note-top{bottom:calc(59% + 8px)}
+.note-bot{top:calc(41% + 8px);border-left-color:var(--logo-ink)}
+@media (max-width:559px){
+  .hero-mark{aspect-ratio:auto;max-width:360px;display:grid;gap:20px;justify-self:start}
+  .hero-mark .bigmark{position:static;width:78%;height:auto;aspect-ratio:1/1}
+  .notes{position:static;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .note{position:static}
+}
 
 /* Numbered circle used in the hero list and the data request list */
 .num{display:inline-grid;place-items:center;flex:none;width:32px;height:32px;border-radius:50%;background:var(--cut-soft);color:var(--cut-ink);font-family:var(--f-display);font-weight:600;font-size:.95rem;line-height:1;font-variant-numeric:tabular-nums}
@@ -798,6 +806,7 @@ a{color:var(--cut-ink)}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
+  .mark-top{animation:none}
   .btn .arr,.faq summary::after{transition:none}
 }
 
@@ -876,7 +885,7 @@ a{color:var(--cut-ink)}
   <section class="hero theme-dark" id="top">
     <div class="wrap hero-grid">
       <div>
-        <h1>Credit partner for <span class="accent">European lenders</span></h1>
+        <h1>Credit risk, <span class="accent">cleanly divided.</span></h1>
         <p class="sub">Cleyve buys and manages consumer and business loan portfolios and provides credit protection on new loans. Lenders release capital and keep their focus on originating.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#contact" data-enquiry="sell">Discuss a portfolio <span class="arr" aria-hidden="true">→</span></a>
@@ -884,14 +893,16 @@ a{color:var(--cut-ink)}
         </div>
       </div>
 
-      <aside class="hero-card" aria-labelledby="hero-card-title">
-        <h2 id="hero-card-title">What Cleyve does</h2>
-        <ol class="hero-list">
-          <li><span class="num" aria-hidden="true">1</span><div><a href="#portfolio-acquisition">Portfolio acquisition</a><p>We buy consumer and business loan books and pay the purchase price up front.</p></div></li>
-          <li><span class="num" aria-hidden="true">2</span><div><a href="#portfolio-management">Portfolio management</a><p>We run acquired portfolios through to final repayment.</p></div></li>
-          <li><span class="num" aria-hidden="true">3</span><div><a href="#credit-protection">Credit protection</a><p>We cover new loans against credit losses for an agreed fee.</p></div></li>
-        </ol>
-      </aside>
+      <figure class="hero-mark">
+        <svg class="bigmark" viewBox="0 0 100 100" role="img" aria-label="The Cleyve C split in two. The blue part is Cleyve, which takes on the credit risk. The navy part is the lender, which keeps the customer.">
+          <path class="mark-top" d="M75.28 28.02 A33.5 33.5 0 1 0 75.28 71.98" fill="none" stroke-width="25" style="stroke:var(--logo-cut)" clip-path="url(#cl-top)"/>
+          <path d="M75.28 28.02 A33.5 33.5 0 1 0 75.28 71.98" fill="none" stroke-width="25" style="stroke:var(--logo-ink)" clip-path="url(#cl-bot)"/>
+        </svg>
+        <figcaption class="notes">
+          <span class="note note-top"><b>Cleyve</b><span>Takes on the credit risk</span></span>
+          <span class="note note-bot"><b>Lender</b><span>Keeps the customer</span></span>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
