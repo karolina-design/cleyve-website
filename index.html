@@ -715,8 +715,10 @@ a{color:var(--cut-ink)}
 .h5-intro h2{font-size:var(--t-2xl)}
 .h5-intro .lead{font-size:var(--t-lg);line-height:1.5}
 .h5-actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;margin-top:6px}
-.h5-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0}
-.h5-stats div{display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:8px;padding:22px 20px;background:var(--bg-alt);min-width:0}
+.h5-figures{display:grid;gap:14px;min-width:0}
+.h5-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin:0;border-top:1px solid var(--line)}
+.h5-stats div{display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:8px;padding:22px 16px 22px 0;border-bottom:1px solid var(--line);min-width:0}
+.h5-stats div:nth-child(even){padding-left:22px;border-left:1px solid var(--line)}
 .h5-stats dt{font-size:var(--t-sm);color:var(--muted)}
 .h5-stats dd{margin:0;font-family:var(--f-display);font-weight:600;font-size:clamp(1.8rem,1.3rem + 1.4vw,2.5rem);line-height:1;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
 .h5-stats .stars{display:flex;gap:2px;margin-top:8px;font-size:1rem;line-height:1}
@@ -724,16 +726,7 @@ a{color:var(--cut-ink)}
 .h5-stats .stars i.half{color:var(--line-strong)}
 .h5-stats .stars i.half::before{content:"★";position:absolute;left:0;top:0;width:50%;overflow:hidden;color:var(--star)}
 .h5-stats small{display:block;margin-top:6px;font-family:var(--f-body);font-weight:400;font-size:var(--t-xs);letter-spacing:0;color:var(--muted)}
-.h5-how{display:grid;gap:20px}
-.h5-how h3{font-size:var(--t-xl)}
-.inv-steps{display:grid;gap:20px;counter-reset:inv}
-.inv-steps li{counter-increment:inv;display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px;align-items:start;color:var(--ink)}
-.inv-steps li::before{content:counter(inv);width:32px;height:32px;display:grid;place-items:center;border-radius:50%;background:var(--cut-soft);font-family:var(--f-mono);font-size:var(--t-xs);font-weight:500;color:var(--cut-ink)}
-@media (min-width:860px){
-  .inv-steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
-  .inv-steps li{grid-template-columns:1fr;gap:12px}
-}
-.inv-note{font-size:var(--t-sm);color:var(--muted)}
+.h5-asof{font-size:var(--t-xs);color:var(--muted)}
 
 /* ---------- Borrowers ---------- */
 .borrow{background:var(--surface);border:1px solid var(--line);padding:clamp(28px,4vw,48px);display:grid;gap:28px}
@@ -1121,7 +1114,7 @@ a{color:var(--cut-ink)}
   </section>
 
   <!-- Investors: invitation to invest through Hive5 -->
-  <section class="band theme-dark" id="investors" aria-labelledby="investors-title">
+  <section class="band" id="investors" aria-labelledby="investors-title">
     <div class="wrap">
       <div class="h5-panel">
         <div class="h5-top">
@@ -1138,21 +1131,15 @@ a{color:var(--cut-ink)}
               <a class="more" href="https://www.trustpilot.com/review/hive5.co" target="_blank" rel="noopener">Read Hive5 reviews on Trustpilot ↗</a>
             </div>
           </div>
-          <dl class="h5-stats">
-            <div><dt>Invested through Hive5</dt><dd>€218M+</dd></div>
-            <div><dt>Interest paid to investors</dt><dd>€5.9M+</dd></div>
-            <div><dt>Investors on the platform</dt><dd>30,000+</dd></div>
-            <div><dt>Rating on Trustpilot</dt><dd>4.5<span class="stars" role="img" aria-label="4.5 out of 5 stars"><i>★</i><i>★</i><i>★</i><i>★</i><i class="half">★</i></span><small>500+ reviews</small></dd></div>
-          </dl>
-        </div>
-        <div class="h5-how">
-          <h3>How investing in Cleyve works</h3>
-          <ol class="inv-steps">
-            <li>Cleyve borrows from Hive Finance UAB to fund its portfolio purchases.</li>
-            <li>Hive5 offers investors claim rights on that business loan.</li>
-            <li>As Cleyve repays, principal and interest are passed on to investors.</li>
-          </ol>
-          <p class="inv-note">Interest rates, terms and available amounts are published on Hive5 when loans are listed. Platform figures as of October 2026.</p>
+          <div class="h5-figures">
+            <dl class="h5-stats">
+              <div><dt>Invested through Hive5</dt><dd>€218M+</dd></div>
+              <div><dt>Interest paid to investors</dt><dd>€5.9M+</dd></div>
+              <div><dt>Investors on the platform</dt><dd>30,000+</dd></div>
+              <div><dt>Rating on Trustpilot</dt><dd>4.5<span class="stars" role="img" aria-label="4.5 out of 5 stars"><i>★</i><i>★</i><i>★</i><i>★</i><i class="half">★</i></span><small>500+ reviews</small></dd></div>
+            </dl>
+            <p class="h5-asof">Hive5 platform figures as of October 2026</p>
+          </div>
         </div>
       </div>
     </div>
