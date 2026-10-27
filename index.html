@@ -507,7 +507,6 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 
   --r-sm:8px;
   --r-md:16px;
-  --r-lg:24px;
 }
 /* Dark bands: the header and hero, the Hive5 investor band and the contact band stay dark; everything else is light so longer text reads easily */
 .theme-dark{
@@ -576,6 +575,8 @@ a{color:var(--cut-ink)}
 .sec-head{display:grid;gap:18px;margin-bottom:clamp(36px,5vw,56px)}
 .sec-head h2{font-size:var(--t-2xl)}
 .sec-head .lead{font-size:var(--t-lg);line-height:1.5;color:var(--ink-2);max-width:60ch}
+/* Icon tile: one 48px rounded square for audiences and key facts */
+.route::before,.bpoints li::before,.h5-stats div::before{content:"";flex:none;width:48px;height:48px;border-radius:12px;background:var(--cut-soft) var(--ico) center/24px no-repeat}
 .more{font-weight:600;color:var(--cut-ink);text-decoration:none;font-size:var(--t-sm)}
 .more:hover{text-decoration:underline;text-underline-offset:3px}
 
@@ -615,6 +616,9 @@ a{color:var(--cut-ink)}
 .route{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:clamp(24px,3vw,32px);display:flex;flex-direction:column;gap:12px}
 .route h3{font-size:var(--t-xl)}
 .route .more{margin-top:auto;padding-top:6px}
+.route-lenders{--ico:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%232453D6%27 stroke-width=%271.8%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%22M3 10l9-6 9 6%22/%3E%3Cpath d=%22M5.5 10v8M10 10v8M14 10v8M18.5 10v8M3 20h18%22/%3E%3C/svg%3E")}
+.route-investors{--ico:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%232453D6%27 stroke-width=%271.8%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%22M3 17l6-6 4 4 8-8%22/%3E%3Cpath d=%22M14 7h7v7%22/%3E%3C/svg%3E")}
+.route-borrowers{--ico:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%232453D6%27 stroke-width=%271.8%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Ccircle cx=%2212%22 cy=%228%22 r=%223.8%22/%3E%3Cpath d=%22M4.5 20v-1a6 6 0 0 1 6-6h3a6 6 0 0 1 6 6v1%22/%3E%3C/svg%3E")}
 
 /* ---------- Services ---------- */
 .services{display:grid;gap:20px}
@@ -625,7 +629,7 @@ a{color:var(--cut-ink)}
 .ticks{display:grid;gap:10px;align-content:start}
 .ticks li{position:relative;padding-left:28px;font-size:var(--t-sm);line-height:1.5}
 .ticks li::before{content:"";position:absolute;left:0;top:.15em;width:18px;height:18px;background:var(--cut);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M4 9.5l3.2 3.2L14 5.8' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M4 9.5l3.2 3.2L14 5.8' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
-.svc .fit{margin-top:auto;padding-top:18px;border-top:1px solid var(--line);font-size:var(--t-sm)}
+.svc .fit{margin-top:auto;padding-top:6px;font-size:var(--t-sm)}
 .svc .fit b{display:block;font-weight:600;color:var(--ink);margin-bottom:2px}
 /* Side by side, the three cards share rows so titles, intros, lists and "Best for" line up */
 @media (min-width:960px){.svc{display:grid;grid-row:span 4;grid-template-rows:subgrid}}
@@ -654,7 +658,7 @@ a{color:var(--cut-ink)}
   .review-grid.is-scrolly .dr li.is-active .num{background:var(--cut);color:var(--on-accent)}
 }
 @media (prefers-reduced-motion:reduce){.rv-visual,.review-grid.is-scrolly .dr li{transition:none}}
-.rv-box{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.rv-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden}
 .rv-title{max-width:none;padding:14px 16px 12px;font-size:var(--t-sm);font-weight:600;color:var(--ink);border-bottom:1px solid var(--line-strong)}
 .rv-body{padding:20px 16px 18px;display:grid;gap:18px;font-size:var(--t-sm)}
 .rv-visual figcaption{font-size:var(--t-xs);color:var(--muted)}
@@ -700,7 +704,7 @@ a{color:var(--cut-ink)}
 .docs em{display:inline-flex;align-items:center;gap:6px;font-style:normal;font-size:var(--t-xs);color:var(--ink-2)}
 .docs em::before{content:"";width:14px;height:14px;background:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%232453D6%27 stroke-width=%271.8%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%22M5 12.5l4.2 4.2L19 7%22/%3E%3C/svg%3E") center/contain no-repeat}
 .tape-fig{margin:0;display:grid;gap:10px;min-width:0}
-.tape-scroll{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.tape-scroll{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md)}
 .tape{width:100%;border-collapse:collapse;font-size:.85rem;line-height:1.25;color:var(--ink);font-variant-numeric:tabular-nums}
 .tape caption{caption-side:top;text-align:left;padding:14px 14px 12px;font-size:var(--t-sm);font-weight:600;color:var(--ink);border-bottom:1px solid var(--line-strong)}
 .tape th{font-weight:600;font-size:var(--t-xs);color:var(--muted);text-align:left;padding:10px 14px;border-bottom:1px solid var(--line)}
@@ -717,36 +721,28 @@ a{color:var(--cut-ink)}
 
 /* ---------- Process ---------- */
 .process-grid{display:grid;gap:40px}
-@media (min-width:960px){.process-grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:72px;align-items:center}}
-.process-copy{display:grid;gap:22px;justify-items:start}
-.process-copy h2{font-size:var(--t-2xl)}
-.process-copy .lead{font-size:var(--t-lg);line-height:1.5}
+@media (min-width:960px){.process-grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:72px;align-items:start}}
+.process-copy{display:grid;gap:24px;justify-items:start}
 .process-copy .ticks{gap:12px}
 .process-copy .ticks li{font-size:var(--t-base)}
 .process-copy .btn{margin-top:6px}
 .pipe-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);min-width:0}
-.pipe-head{padding:20px 24px;border-bottom:1px solid var(--line)}
-.pipe-head b{font-family:var(--f-display);font-weight:600;font-size:1.15rem;color:var(--ink)}
 /* Numbered stages on one vertical line, like the data review list; the last stage, the result, is filled blue */
-.pipe{display:grid;padding:24px 24px 4px;counter-reset:pipe}
+.pipe{display:grid;padding:22px 16px 4px;counter-reset:pipe}
 .pipe li{position:relative;display:grid;gap:4px;padding:0 0 24px 48px;counter-increment:pipe}
 .pipe li::before{content:counter(pipe);position:absolute;left:0;top:-3px;display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--cut-soft);color:var(--cut-ink);font-family:var(--f-display);font-weight:600;font-size:.95rem;line-height:1}
 .pipe li:not(:last-child)::after{content:"";position:absolute;left:15.5px;top:35px;bottom:3px;width:1px;background:var(--line-strong)}
 .pipe li:last-child::before{background:var(--cut);color:var(--on-accent)}
 .pipe b{color:var(--ink);font-weight:600}
 .pipe span{font-size:var(--t-sm);color:var(--muted)}
-.pipe-sum{margin:0;padding:0 24px 8px}
-.pipe-sum div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid var(--line);font-size:var(--t-sm)}
+.pipe-sum{margin:0;padding:4px 16px 12px}
+.pipe-sum div{display:flex;justify-content:space-between;gap:16px;padding:6px 0;font-size:var(--t-sm)}
 .pipe-sum dt{color:var(--muted)}
 .pipe-sum dd{margin:0;color:var(--ink);font-weight:600;text-align:right}
 
 /* ---------- About / group ---------- */
-.about-grid{display:grid;gap:48px}
-@media (min-width:960px){.about-grid{grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:72px;align-items:start}}
-.about-copy{display:grid;gap:18px}
-.about-copy h2{font-size:var(--t-2xl)}
 
-.team-head{margin-top:clamp(56px,7vw,88px);display:grid;gap:10px;margin-bottom:28px}
+.team-head{display:grid;gap:10px;margin-bottom:24px}
 .team-head h3{font-size:var(--t-xl)}
 .team{display:grid;gap:24px}
 .team:has(.person-more[open]){align-items:start}
@@ -764,7 +760,7 @@ a{color:var(--cut-ink)}
 .person .li:focus-visible{outline:2px solid var(--cut);outline-offset:2px}
 .person .role{font-size:var(--t-sm);color:var(--cut-ink);font-weight:500}
 .person .summary{margin-top:6px;font-size:var(--t-sm);color:var(--ink-2)}
-.person-more{margin-top:10px;border-top:1px solid var(--line)}
+.person-more{margin-top:6px}
 .person-more summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding-top:12px;font-size:var(--t-sm);font-weight:600;color:var(--cut-ink)}
 .person-more summary::-webkit-details-marker{display:none}
 .person-more summary::after{content:"";width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .2s ease}
@@ -783,18 +779,13 @@ a{color:var(--cut-ink)}
 .h5-top{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"intro" "stats" "actions" "asof";row-gap:32px}
 @media (min-width:960px){.h5-top{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"intro intro" "stats stats" "actions asof";column-gap:32px;row-gap:44px}}
 .h5-intro{grid-area:intro;display:grid;gap:18px;justify-items:start;min-width:0}
-@media (min-width:960px){
-  .h5-intro{grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:56px}
-  .h5-logo{grid-column:1 / -1}
-  .h5-intro .lead{grid-column:2;align-self:end}
-}
 .h5-logo img{height:30px;width:auto}
 .h5-intro h2{font-size:var(--t-2xl)}
-.h5-intro .lead{font-size:var(--t-lg);line-height:1.5}
+.h5-intro .lead{font-size:var(--t-lg);line-height:1.5;max-width:60ch}
 .h5-stats{grid-area:stats;display:grid;grid-template-columns:minmax(0,1fr);gap:36px 24px;margin:0}
 @media (min-width:760px){.h5-stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.h5-stats div{display:grid;justify-items:center;row-gap:8px;text-align:center;min-width:0}
-.h5-stats div::before{content:"";width:52px;height:52px;margin-bottom:8px;border-radius:12px;background:rgba(255,255,255,.14) var(--ico) center/24px no-repeat}
+.h5-stats div{display:grid;justify-items:start;row-gap:8px;min-width:0}
+.h5-band .h5-stats div::before{margin-bottom:8px;background-color:rgba(255,255,255,.14)}
 .h5-stats dd{margin:0;font-family:var(--f-display);font-weight:600;font-size:clamp(2.3rem,1.5rem + 2vw,3.3rem);line-height:1;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
 .h5-stats dt{order:1;font-size:var(--t-sm);color:var(--muted)}
 .st-invested{--ico:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23FFFFFF%27 stroke-width=%271.8%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%22M3 17l6-6 4 4 8-8%22/%3E%3Cpath d=%22M14 7h7v7%22/%3E%3C/svg%3E")}
@@ -806,18 +797,16 @@ a{color:var(--cut-ink)}
 .h5-asof{grid-area:asof;align-self:center;font-size:var(--t-xs);color:var(--muted)}
 
 /* ---------- Borrowers ---------- */
-.borrow{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(28px,4vw,48px);display:grid;gap:28px}
-.borrow-head{display:grid;gap:14px}
-.borrow-head h2{font-size:var(--t-2xl)}
-.bpoints{display:grid;gap:24px}
+.bpoints{display:grid;gap:20px}
 @media (min-width:860px){.bpoints{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.bpoints li{display:grid;gap:6px;align-content:start}
-.bpoints li::before{content:"";width:44px;height:44px;margin-bottom:8px;border-radius:12px;background:var(--cut-soft) var(--ico) center/22px no-repeat}
+.bpoints li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:clamp(24px,3vw,32px);display:flex;flex-direction:column;gap:8px}
+.bpoints li::before{margin-bottom:8px}
 .bp-agreement{--ico:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%232453D6%27 stroke-width=%271.8%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%22M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z%22/%3E%3Cpath d=%22M14 3v5h5M9 13h6M9 17h4%22/%3E%3C/svg%3E")}
 .bp-notice{--ico:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%232453D6%27 stroke-width=%271.8%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Crect x=%223%22 y=%225%22 width=%2218%22 height=%2214%22 rx=%222%22/%3E%3Cpath d=%22M3.5 7l8.5 6 8.5-6%22/%3E%3C/svg%3E")}
 .bp-talk{--ico:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%232453D6%27 stroke-width=%271.8%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%22M20 12a8 8 0 0 1-11.7 7.1L4 20l1.1-4A8 8 0 1 1 20 12z%22/%3E%3C/svg%3E")}
-.bpoints b{color:var(--ink);font-weight:600}
+.bpoints b{font-family:var(--f-display);font-size:var(--t-lg);font-weight:600;color:var(--ink);letter-spacing:-.01em}
 .bpoints span{font-size:var(--t-sm)}
+.borrow-cta{margin-top:clamp(28px,4vw,40px)}
 
 /* ---------- FAQ ---------- */
 .faq{max-width:860px;border-top:1px solid var(--line)}
@@ -832,15 +821,15 @@ a{color:var(--cut-ink)}
 .contact{background:var(--navy);color:var(--on-dark-muted)}
 .contact-grid{display:grid;gap:40px}
 @media (min-width:960px){
-  .contact-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:auto 1fr;column-gap:72px;row-gap:36px;align-items:start}
-  .contact-copy{grid-column:1;grid-row:1}
-  .contact .form{grid-column:2;grid-row:1 / span 2}
+  .contact-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:72px;row-gap:clamp(36px,5vw,56px);align-items:start}
+  .contact-copy{grid-column:1 / -1;grid-row:1}
+  .contact .form{grid-column:2;grid-row:2}
   .office{grid-column:1;grid-row:2}
 }
 .contact h2{color:var(--on-dark);font-size:var(--t-2xl)}
 .contact-copy{display:grid;gap:18px}
-.contact-copy .lead{font-size:var(--t-lg);color:var(--on-dark)}
-.form{background:var(--surface);color:var(--ink-2);border-radius:var(--r-lg);padding:clamp(24px,4vw,40px);display:grid;gap:18px}
+.contact-copy .lead{font-size:var(--t-lg);line-height:1.5;color:var(--on-dark);max-width:60ch}
+.form{background:var(--surface);color:var(--ink-2);border-radius:var(--r-md);padding:clamp(24px,4vw,40px);display:grid;gap:18px}
 .form .two{display:grid;gap:18px}
 @media (min-width:600px){.form .two{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .field{display:grid;gap:6px;min-width:0}
@@ -897,7 +886,7 @@ a{color:var(--cut-ink)}
 .svc[id],#portfolio-review,#privacy-details{scroll-margin-top:108px}
 .form-privacy{font-size:var(--t-sm);line-height:1.6;color:var(--ink-2)}
 .form-privacy a,.privacy-details a{color:inherit;text-decoration:underline;text-underline-offset:3px}
-.privacy-details{font-size:var(--t-sm);line-height:1.65;border-top:1px solid var(--line);padding-top:14px}
+.privacy-details{font-size:var(--t-sm);line-height:1.65}
 .privacy-details summary{cursor:pointer;font-weight:600;list-style:none;display:inline-flex;align-items:center;gap:8px}
 .privacy-details summary::-webkit-details-marker{display:none}
 .privacy-details summary::after{content:"";width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .2s ease}
@@ -993,17 +982,17 @@ a{color:var(--cut-ink)}
         <h2 id="routes-title">Find the right starting point</h2>
       </div>
       <div class="routes">
-        <article class="route">
+        <article class="route route-lenders">
           <h3>For lenders</h3>
           <p>Sell a portfolio or protect new loans. For banks and non-bank lenders in Europe that want to release capital, exit a product or grow with a known cost of risk.</p>
           <a class="more" href="#solutions">See our solutions →</a>
         </article>
-        <article class="route">
+        <article class="route route-investors">
           <h3>For investors</h3>
           <p>Cleyve's portfolio purchases are funded by a business loan that investors can take part in on the Hive5 platform.</p>
           <a class="more" href="#investors">How investing works →</a>
         </article>
-        <article class="route">
+        <article class="route route-borrowers">
           <h3>For borrowers</h3>
           <p>Has your loan moved to Cleyve? See what stays the same after a portfolio transfer, how payments work and who to talk to if you need help.</p>
           <a class="more" href="#borrowers">Borrower information →</a>
@@ -1168,30 +1157,34 @@ a{color:var(--cut-ink)}
 
   <!-- Process -->
   <section class="band" id="process" aria-labelledby="process-title">
-    <div class="wrap process-grid">
-      <div class="process-copy">
+    <div class="wrap">
+      <div class="sec-head">
         <h2 id="process-title">How we work</h2>
         <p class="lead">Four stages from first call to transfer, each with a clear output, so both sides know what comes next.</p>
-        <ul class="ticks">
-          <li>An NDA is signed before any data changes hands</li>
-          <li>Price or fee, scope and responsibilities are set out in contract</li>
-          <li>Reporting follows the agreed schedule after transfer</li>
-        </ul>
-        <a class="btn btn-primary" href="#contact" data-enquiry="sell">Discuss a portfolio <span class="arr" aria-hidden="true">→</span></a>
       </div>
-      <div class="pipe-card">
-        <div class="pipe-head"><b>Portfolio sale</b></div>
-        <ol class="pipe">
-          <li><b>Introduction</b><span>Tell us about the portfolio and what you want to achieve. We sign an NDA before any data changes hands.</span></li>
-          <li><b>Data review</b><span>We work through the data pack, test it against our model and come back with questions.</span></li>
-          <li><b>Terms</b><span>We agree price or fee, scope and responsibilities, and set them out in contract.</span></li>
-          <li><b>Transfer and management</b><span>The portfolio moves to Cleyve, or cover starts on new loans.</span></li>
-        </ol>
-        <dl class="pipe-sum">
-          <div><dt>Data shared</dt><dd>After the NDA</dd></div>
-          <div><dt>Terms</dt><dd>Set out in contract</dd></div>
-          <div><dt>Reporting</dt><dd>On the agreed schedule</dd></div>
-        </dl>
+      <div class="process-grid">
+        <div class="process-copy">
+          <ul class="ticks">
+            <li>An NDA is signed before any data changes hands</li>
+            <li>Price or fee, scope and responsibilities are set out in contract</li>
+            <li>Reporting follows the agreed schedule after transfer</li>
+          </ul>
+          <a class="btn btn-primary" href="#contact" data-enquiry="sell">Discuss a portfolio <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+        <div class="pipe-card">
+          <p class="rv-title">Portfolio sale</p>
+          <ol class="pipe">
+            <li><b>Introduction</b><span>Tell us about the portfolio and what you want to achieve. We sign an NDA before any data changes hands.</span></li>
+            <li><b>Data review</b><span>We work through the data pack, test it against our model and come back with questions.</span></li>
+            <li><b>Terms</b><span>We agree price or fee, scope and responsibilities, and set them out in contract.</span></li>
+            <li><b>Transfer and management</b><span>The portfolio moves to Cleyve, or cover starts on new loans.</span></li>
+          </ol>
+          <dl class="pipe-sum">
+            <div><dt>Data shared</dt><dd>After the NDA</dd></div>
+            <div><dt>Terms</dt><dd>Set out in contract</dd></div>
+            <div><dt>Reporting</dt><dd>On the agreed schedule</dd></div>
+          </dl>
+        </div>
       </div>
     </div>
   </section>
@@ -1199,13 +1192,9 @@ a{color:var(--cut-ink)}
   <!-- About -->
   <section class="band band-alt" id="about" aria-labelledby="about-title">
     <div class="wrap">
-      <div class="about-grid">
-        <div class="about-copy">
-          <h2 id="about-title">About Cleyve</h2>
-        </div>
-        <div class="about-copy">
-          <p>Cleyve is a Latvian company within Hive Finance Group, which also runs the Hive5 investment platform and lending businesses in Romania and Poland. That gives Cleyve an established funding channel and in-house lending experience from day one.</p>
-        </div>
+      <div class="sec-head">
+        <h2 id="about-title">About Cleyve</h2>
+        <p class="lead">Cleyve is a Latvian company within Hive Finance Group, which also runs the Hive5 investment platform and lending businesses in Romania and Poland. That gives Cleyve an established funding channel and in-house lending experience from day one.</p>
       </div>
 
       <div class="team-head">
@@ -1288,18 +1277,16 @@ a{color:var(--cut-ink)}
   <!-- Borrowers -->
   <section class="band band-alt" id="borrowers" aria-labelledby="borrowers-title">
     <div class="wrap">
-      <div class="borrow">
-        <div class="borrow-head">
-          <h2 id="borrowers-title">Has your loan moved to Cleyve?</h2>
-          <p>When a lender transfers a portfolio to us, we take over the management of your loan. Here is what that means for you.</p>
-        </div>
-        <ul class="bpoints">
-          <li class="bp-agreement"><b>Your agreement stays the same</b><span>A transfer does not change your interest rate, balance or repayment schedule.</span></li>
-          <li class="bp-notice"><b>Watch for a written notice</b><span>We will tell you in writing if your payment details change. Until then, keep paying as you do now.</span></li>
-          <li class="bp-talk"><b>Talk to us early</b><span>If you are finding it hard to pay, get in touch. We will look for a repayment plan that works for you.</span></li>
-        </ul>
-        <div><a class="btn btn-ghost" href="#contact" data-enquiry="borrower">Contact borrower support <span class="arr" aria-hidden="true">→</span></a></div>
+      <div class="sec-head">
+        <h2 id="borrowers-title">Has your loan moved to Cleyve?</h2>
+        <p class="lead">When a lender transfers a portfolio to us, we take over the management of your loan. Here is what that means for you.</p>
       </div>
+      <ul class="bpoints">
+        <li class="bp-agreement"><b>Your agreement stays the same</b><span>A transfer does not change your interest rate, balance or repayment schedule.</span></li>
+        <li class="bp-notice"><b>Watch for a written notice</b><span>We will tell you in writing if your payment details change. Until then, keep paying as you do now.</span></li>
+        <li class="bp-talk"><b>Talk to us early</b><span>If you are finding it hard to pay, get in touch. We will look for a repayment plan that works for you.</span></li>
+      </ul>
+      <div class="borrow-cta"><a class="btn btn-ghost" href="#contact" data-enquiry="borrower">Contact borrower support <span class="arr" aria-hidden="true">→</span></a></div>
     </div>
   </section>
 
